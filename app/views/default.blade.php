@@ -216,7 +216,7 @@
 
                         <li><a href="{{URL::to('/')}}"><i class="icon-bar-chart"></i><span class="hidden-tablet"> Dashboard</span></a></li>
                         <li><a href="{{URL::to('forums')}}"><i class="icon-folder-close-alt"></i><span class="hidden-tablet"> Forums</span></a></li>
-                        <li><a href="#"><i class="icon-user"></i><span class="hidden-tablet"> Utilisateurs</span></a> </li>
+                        <li><a href="{{URL::to('users')}}"><i class="icon-user"></i><span class="hidden-tablet"> Utilisateurs</span></a> </li>
                     </ul>
                 </div>
             </div>

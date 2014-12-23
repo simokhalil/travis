@@ -15,6 +15,9 @@
 Route::get('/', 'HomeController@showDashboard');
 
 Route::get('forums', 'ForumController@showForums');
+Route::get('users', 'UserController@getInfo');
+Route::post('users', 'UserController@postInfo');
+
 
 /* Test */
 Route::get('test1', function(){
