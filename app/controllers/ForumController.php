@@ -20,6 +20,14 @@ class ForumController extends BaseController {
         $nbSujetsForums = array();
         $nbVisitesForum = array();
         $nbReponsesForum = array();
+        $maxMsgs =0;
+        $maxMsgForum=0;
+        $maxSujets =0;
+        $maxSujetsForum=0;
+        $maxVisites =0;
+        $maxVisitesForum=0;
+        $maxReponses =0;
+        $maxReponsesForum=0;
 
         foreach($forums as $forum){
             $nbForumMsg = DB::table('transition')
@@ -29,21 +37,38 @@ class ForumController extends BaseController {
                         ->orWhere('titre', 'Répondre à un message');
                 })->count();
             $nbMsgForums[$forum] = $nbForumMsg;
-
+            if($maxMsgs<$nbForumMsg)
+            {
+                $maxMsgs=$nbForumMsg;
+                $maxMsgForum=$forum;
+            }
             $nbSujetsForums[$forum] = DB::table('transition')
                 ->where('attribut', 'LIKE', 'IDForum='.$forum.'%')
                 ->where('titre', 'Poster un nouveau message')
                 ->count();
-
+            if($maxSujets<$nbSujetsForums[$forum])
+            {
+                $maxSujets=$nbSujetsForums[$forum];
+                $maxSujetsForum=$forum;
+            }
             $nbVisitesForum[$forum] = DB::table('transition')
                 ->where('attribut', 'LIKE', 'IDForum='.$forum.'%')
                 ->where('titre', 'Afficher une structure (cours/forum)')
                 ->count();
-
+            if($maxVisites<$nbVisitesForum[$forum])
+            {
+                $maxVisites=$nbVisitesForum[$forum];
+                $maxVisitesForum=$forum;
+            }
             $nbReponsesForum[$forum] = DB::table('transition')
                 ->where('attribut', 'LIKE', 'IDForum='.$forum.'%')
                 ->where('titre', 'Répondre à un message')
                 ->count();
+            if($maxReponses<$nbReponsesForum[$forum])
+            {
+                $maxReponses=$nbReponsesForum[$forum];
+                $maxReponsesForum=$forum;
+            }
         }
 
         $nbForums = count($forums);
@@ -52,7 +77,17 @@ class ForumController extends BaseController {
         $nbUsers = DB::table('transition')->distinct()->get(['utilisateur']);
         $nbUsers = count($nbUsers);
 
+        $dates = DB::table('transition')
+            ->select(DB::raw('Date, count(*) as count'))
+            ->groupBy('Date')
+            ->get();
+        $activitesParDate =  array();
 
+
+        foreach($dates as $date)
+        {
+            $activitesParDate[]=array(DateTime::createFromFormat('Y-m-d',$date->Date), $date->count);
+        }
         //print_r('nb forums = '.$nbForums.', nb messages = '.$nbMsg);
         return View::make('forums')->with('data',array(
             'nbForums'=>$nbForums,
@@ -62,25 +97,14 @@ class ForumController extends BaseController {
             'nbSujetsForum'=>$nbSujetsForums,
             'nbVisitesForum'=>$nbVisitesForum,
             'nbReponsesForum'=>$nbReponsesForum,
-            'nbUsers'=>$nbUsers
+            'nbUsers'=>$nbUsers,
+            'dates' => $dates,
+            'activites' => $activitesParDate,
+            'maxMsgs' =>$maxMsgForum,
+            'maxSujets' =>$maxSujetsForum,
+            'maxVisites' =>$maxVisitesForum,
+            'maxReponses' =>$maxReponsesForum
         ));
 	}
-    public function postInfoForum()
-    {
-        //$f=Input::get('forum');
-        $dates = DB::table('transition')->distinct()->get(['Date']);
-        $activitesParDate =  array();
 
-
-        foreach($dates as $date)
-        {
-            $activitesParDate[]=DB::table('transition')->where('date','=',$date->Date)->count();
-        }
-        return View::make('forums')->with('data',$activitesParDate);
-       /* return View::make('forums')->with('data',array(
-            'dates' => $dates,
-            'activites' => $activitesParDate
-        ));*/
-
-    }
 }

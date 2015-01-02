@@ -14,7 +14,7 @@
 /* Afficher le dashboard */
 Route::get('/', 'HomeController@showDashboard');
 
-Route::get('forums', 'ForumController@postInfoForum');
+Route::get('forums', 'ForumController@showforums');
 Route::get('users', 'UserController@getInfo');
 Route::post('users', 'UserController@postInfo');
 
