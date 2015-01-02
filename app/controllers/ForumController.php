@@ -28,7 +28,9 @@ class ForumController extends BaseController {
         $maxVisitesForum=0;
         $maxReponses =0;
         $maxReponsesForum=0;
-
+        $Visites=0;
+        $Reponses=0;
+        $Sujets=0;
         foreach($forums as $forum){
             $nbForumMsg = DB::table('transition')
                 ->where('attribut', 'LIKE', 'IDForum='.$forum.'%')
@@ -69,10 +71,14 @@ class ForumController extends BaseController {
                 $maxReponses=$nbReponsesForum[$forum];
                 $maxReponsesForum=$forum;
             }
+            $Visites=$Visites+$nbVisitesForum[$forum];
+            $Reponses=$Reponses+$nbReponsesForum[$forum];
+            $Sujets=$Sujets+$nbSujetsForums[$forum];
         }
 
         $nbForums = count($forums);
         $nbMsg = count($msgs);
+
 
         $nbUsers = DB::table('transition')->distinct()->get(['utilisateur']);
         $nbUsers = count($nbUsers);
@@ -103,7 +109,10 @@ class ForumController extends BaseController {
             'maxMsgs' =>$maxMsgForum,
             'maxSujets' =>$maxSujetsForum,
             'maxVisites' =>$maxVisitesForum,
-            'maxReponses' =>$maxReponsesForum
+            'maxReponses' =>$maxReponsesForum,
+            'nbVisites' => $Visites,
+            'nbReponses' => $Reponses,
+            'nbSujets' => $Sujets
         ));
 	}
 
