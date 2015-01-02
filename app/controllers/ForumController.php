@@ -76,10 +76,11 @@ class ForumController extends BaseController {
         {
             $activitesParDate[]=DB::table('transition')->where('date','=',$date->Date)->count();
         }
-        return View::make('forums')->with('data',array(
+        return View::make('forums')->with('data',$activitesParDate);
+       /* return View::make('forums')->with('data',array(
             'dates' => $dates,
             'activites' => $activitesParDate
-        ));
+        ));*/
 
     }
 }

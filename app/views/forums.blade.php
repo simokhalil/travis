@@ -28,7 +28,10 @@
             </div>
 
 
-
+                <?php
+                    //print_r($data['dates']);
+                    print_r($data);
+                ?>
 
                       <div id="container" style="width: 100%; min-height: 500px; margin: 0 auto"></div>
 
@@ -56,16 +59,13 @@
 
 
                xAxis: {
-                   categories: [<?php
-                                foreach($data['dates'] as $date){
-                                echo $date->Date.',';
-                                }
-                                ?>]
+                   categories: []
+
                },
 
                series: [{
                    data: [<?php
-                            foreach($data['activites'] as $activite){
+                            foreach($data as $activite){
                              echo $activite.',';
                              }
                           ?>  ]
