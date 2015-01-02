@@ -68,16 +68,16 @@ class ForumController extends BaseController {
     public function postInfoForum()
     {
         //$f=Input::get('forum');
-        $dates = DB::table('transition')->where('attribut', 'LIKE', 'IDForum=326%')->distinct()->get('Date');
+        $dates = DB::table('transition')->where('attribut', 'LIKE', 'IDForum=326%')->distinct()->get(['Date']);
         $activitesParDate =  array();
 
 
         foreach($dates as $date)
         {
-            $activitesParDate[]=DB::table('transition')->where('attribut', 'LIKE', 'IDForum=326%')->where('date','=',$date)->count();
+            $activitesParDate[]=DB::table('transition')->where('attribut', 'LIKE', 'IDForum=326%')->where('date','=',$date->Date)->count();
         }
-        echo $activitesParDate;
-        echo $dates;
+        print_r($activitesParDate);
+        print_r($dates);
 
     }
 }
