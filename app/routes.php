@@ -19,6 +19,10 @@ Route::get('users', 'UserController@getInfo');
 Route::post('users', 'UserController@postInfo');
 
 
+Route::get('test2', function(){
+    return View::make('test');
+});
+
 /* Test */
 Route::get('test1', function(){
     $test = DB::table('transition')->where('idTran', 24)->get(['attribut']);

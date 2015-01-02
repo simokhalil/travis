@@ -4,6 +4,11 @@
     Dashboard
 @endsection
 
+@section('hightcharts_scripts')
+    <script src="js/highcharts/highcharts.js"></script>
+    <script src="js/highcharts/modules/exporting.js"></script>
+@endsection
+
 @section('content')
     <ul class="breadcrumb">
         <li>
@@ -51,51 +56,51 @@
     </div>
 
     <h2>Activités</h2>
-    <div id="piechart" style="height:300px"></div>
+    <!--<div id="piechart" style="height:300px"></div>-->
+    <div id="chart" style="min-width: 310px; min-height: 500px; margin: 0 auto"></div>
 @endsection
 
 
 @section('scripts')
     <script>
-        /* ---------- Pie chart ---------- */
-
-        var data = [
-        <?php
-        foreach($data['activities'] as $activity){
-            echo '{ label: "'.$activity->titre.'", data:'.$data['activitiesPercentage'][$activity->titre].'},';
-        }
-        ?>
-        ];
-
-            if($("#piechart").length)
-            {
-                $.plot($("#piechart"), data,
-                {
-                    series: {
-                            pie: {
-                                show: true,
-                                radius: 1,
-                                tilt: 0.5
+        $(function () {
+            $('#chart').highcharts({
+                chart: {
+                    plotBackgroundColor: null,
+                    plotBorderWidth: 1,//null,
+                    plotShadow: false
+                },
+                title: {
+                    text: 'Répartition des activités utilisateurs'
+                },
+                tooltip: {
+                    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                },
+                plotOptions: {
+                    pie: {
+                        allowPointSelect: true,
+                        cursor: 'pointer',
+                        dataLabels: {
+                            enabled: true,
+                            format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                            style: {
+                                color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
                             }
-                    },
-                    grid: {
-                        hoverable: true,
-                        clickable: true
-                    },
-                    legend: {
-                        show: true
-                    },
-                    colors: ["#FA5833", "#2FABE9", "#FABB3D", "#78CD51"]
-                });
-
-                function pieHover(event, pos, obj)
-                {
-                    if (!obj)
-                            return;
-                    percent = parseFloat(obj.series.percent).toFixed(2);
-                    $("#hover").html('<span style="font-weight: bold; color: '+obj.series.color+'">'+obj.series.label+' ('+percent+'%)</span>');
-                }
-                $("#piechart").bind("plothover", pieHover);
-            }
+                        }
+                    }
+                },
+                series: [{
+                    type: 'pie',
+                    name: 'Taux d\'activité',
+                    data: [
+                        <?php
+                        foreach($data['activities'] as $activity){
+                            echo '["'.$activity->titre.'", '.$data['activitiesPercentage'][$activity->titre].'],';
+                        }
+                        ?>
+                    ]
+                }]
+            });
+        });
     </script>
 @endsection

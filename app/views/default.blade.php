@@ -35,9 +35,14 @@
 	<link rel="shortcut icon" href="img/favicon.ico">
 	<!-- end: Favicon -->
 
+	<!-- start: jQuery -->
+		<script src="js/jquery-1.9.1.min.js"></script>
+	<!-- end: jQuery -->
+
 </head>
 
 <body>
+	@yield('hightcharts_scripts')
     <!-- start: Header -->
 	<div class="navbar">
 		<div class="navbar-inner">
@@ -260,7 +265,6 @@
     </footer>
 
     <!-- start: JavaScript-->
-    <script src="js/jquery-1.9.1.min.js"></script>
     <script src="js/jquery-migrate-1.0.0.min.js"></script>
     <script src="js/jquery-ui-1.10.0.custom.min.js"></script>
     <script src="js/jquery.ui.touch-punch.js"></script>
