@@ -53,7 +53,7 @@
 
     <h2>Activités</h2>
     <!--<div id="piechart" style="height:300px"></div>-->
-    <div id="chart" style="min-width: 310px; min-height: 500px; margin: 0 auto"></div>
+    <div id="chart" style="width: 100%; min-height: 500px; margin: 0 auto"></div>
 @endsection
 
 
