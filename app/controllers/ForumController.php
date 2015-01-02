@@ -74,7 +74,7 @@ class ForumController extends BaseController {
 
         foreach($dates as $date)
         {
-            $activitesParDate[]=DB::table('transition')->where('date','=',$date->Date)->count();
+            $activitesParDate[]=array(DateTime::createFromFormat('Y-m-d',$date->Date), DB::table('transition')->where('date','=',$date->Date)->count());
         }
         return View::make('forums')->with('data',array(
             'dates' => $dates,

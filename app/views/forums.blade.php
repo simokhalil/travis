@@ -56,21 +56,18 @@
 
 
                xAxis: {
-                   categories: [<?php
-                                foreach($data['dates'] as $date){
-                                echo $date->Date.',';
-                                }
-                                ?>]
+                   type: 'datetime'
                },
 
                series: [{
                    data: [<?php
                             foreach($data['activites'] as $activite){
-                             echo $activite.',';
+                             echo '[Date.UTC('.$activite[0]->format('Y,m,d').'),'.$activite[1].'],';
                              }
                           ?>  ]
                }]
            });
           });
+
     </script>
 @endsection
