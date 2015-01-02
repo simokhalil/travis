@@ -69,6 +69,7 @@
                                         <th>Réponses</th>
                                         <th>Consultations</th>
                                         <th>Activité</th>
+                                        <th>Statut</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -96,6 +97,11 @@
                                                 <?php echo round($pourcentage,2);?>%
                                                 <div class="meter blue"><span style="width: <?php echo $pourcentage;?>%"></span></div>
                                             </td>
+                                            <td class="center">
+                                           	<span class="<?php if($pourcentage>1){ echo "label label-success";} else {echo "label label-important";} ?>">
+                                           	  <?php if($pourcentage>1){ echo "Actif";} else {echo "Inactif";}?></span>
+                                                                                            	</td>
+
                                         </tr>
                                     <?php
                                         }
@@ -129,12 +135,9 @@
                           zoomType: 'x'
                       },
                title: {
-                   text: 'Chart reflow is set to true'
+                   text: 'Activités'
                },
 
-               subtitle: {
-                   text: 'When resizing the window or the frame, the chart should resize'
-               },
 
 
                xAxis: {
@@ -142,6 +145,7 @@
                },
 
                series: [{
+
                    data: [<?php
                             foreach($data['activites'] as $activite){
                                echo '[Date.UTC('.$activite[0]->format('Y,m,d,H,i,s').'),'.$activite[1].'],';
