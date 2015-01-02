@@ -4,10 +4,6 @@
     Dashboard
 @endsection
 
-@section('hightcharts_scripts')
-    <script src="js/highcharts/highcharts.js"></script>
-    <script src="js/highcharts/modules/exporting.js"></script>
-@endsection
 
 @section('content')
     <ul class="breadcrumb">
