@@ -48,7 +48,7 @@
 
                     </div><!-- End .sparkStats -->
     <div id="container" style="width: 100%; min-height: 500px; margin: 0 auto"></div>
-    <div id="ActivitesForum" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+    <div id="ActivitesForum" style="min-width: 310px; height: 800px; margin: 0 auto"></div>
     <div class="row-fluid sortable">
         <div class="box span12">
             <div class="box-header" data-original-title>
