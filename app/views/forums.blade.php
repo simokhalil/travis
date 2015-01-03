@@ -139,6 +139,8 @@
                    type: 'datetime'
                },
                series: [{
+                   type: 'area',
+                   title: 'Taux activité' ,
                    data: [<?php
                             foreach($data['activites'] as $activite){
                                echo '[Date.UTC('.$activite[0]->format('Y,m,d,H,i,s').'),'.$activite[1].'],';

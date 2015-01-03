@@ -146,12 +146,40 @@ class ForumController extends BaseController {
                 $query->where('titre', 'Poster un nouveau message')
                     ->orWhere('titre', 'Répondre à un message');
             })->count();
+
+       // $results = DB::select('select DISTINCT Date from transition where attribut LIKE "IDForum='.$id.'%"', array());
+        $dates = DB::table('transition')
+            ->select(DB::raw('Date, count(*) as count'))
+            ->where('attribut', 'LIKE', 'IDForum='.$id.'%')
+            ->groupBy('Date')
+            ->get();
+        $totalActivite=0;
+        $ActiviteMax=0;
+        $DateActiviteMax=0;
+        foreach ($dates as $date) {
+
+            if($date->count>$ActiviteMax)
+            {
+                $ActiviteMax=$date->count;
+                $DateActiviteMax= DateTime::createFromFormat('Y-m-d',$date->Date);
+
+            }
+            $totalActivite=$totalActivite+$date->count;
+
+        }
+        echo $ActiviteMax;
+        echo date_format($DateActiviteMax,'Y-m-d');
+
         return View::make('infoforum')->with('data',array(
             'nbVisites'=>$nbVisitesForum,
             'nbUtilisateurs' => $nbUsers,
             'nbReponses' => $nbReponsesForum,
             'nbSujets' => $nbSujetsForums,
-            'nbMsgs' => $nbForumMsg
+            'nbMsgs' => $nbForumMsg,
+            'ActivitesMax' => $ActiviteMax,
+            'DateActiviteMax' => date_format($DateActiviteMax,'Y-m-d'),
+            'TotalActivite' => $totalActivite
+
 
 
         ));
