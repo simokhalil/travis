@@ -2,6 +2,7 @@
 
 class ForumController extends BaseController {
 
+    public $ActivitesForum;
 	public function showforums()
 	{
         $attributs = DB::table('transition')->get(['attribut']);
@@ -284,7 +285,7 @@ class ForumController extends BaseController {
 
         }
 
-        // Camembert RIRICOLA
+        // Camembert Répartition des activités utilisateurs
         $nbActiviteForum = DB::table('transition')
             ->where('attribut', 'LIKE', 'IDForum='.$id.'%')
             ->count();
@@ -310,8 +311,6 @@ class ForumController extends BaseController {
             }
         }
         echo $totalActivite;
-
-
 
 
 
