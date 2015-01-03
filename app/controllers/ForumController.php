@@ -209,6 +209,16 @@ class ForumController extends BaseController {
 
         }
 
+        // Camembert RIRICOLA
+        $nbActiviteForum = DB::table('transition')
+            ->where('attribut', 'LIKE', 'IDForum='.$id.'%')
+            ->count();
+
+        $nbActiviteTotal = DB::table('transition')
+            ->count();
+
+        //echo $nbActiviteForum/$nbActiviteTotal*100;
+
         foreach ($users as $u) {
             $ReponseUser= DB::table('transition')
                 ->where('Attribut','LIKE', '%IDForum='.$id.'%')
@@ -236,7 +246,9 @@ class ForumController extends BaseController {
             'MaxActivite' => $maxActivite,
             'MaxActiviteSujet' => $maxActiviteSujet,
             'MaxUserActivite' =>$MaxUserActivite,
-            'MaxNbUserActivite' => $MaxNbUserActivite
+            'MaxNbUserActivite' => $MaxNbUserActivite,
+            'nbActiviteForum' => $nbActiviteForum,
+            'nbActiviteTotal' => $nbActiviteTotal
 
 
 
