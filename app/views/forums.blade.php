@@ -79,7 +79,7 @@
                                     ?>
                                         <tr>
                                             <td>
-                                                <?php echo $forum; ?>
+                                                <a href="<?php echo "/travis/public/forum/".$forum?>"><?php echo $forum; ?></a>
                                             </td>
                                             <td>
                                                 <?php echo $data['nbForumMsg'][$forum]; ?>

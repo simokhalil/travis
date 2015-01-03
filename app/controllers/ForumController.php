@@ -115,5 +115,46 @@ class ForumController extends BaseController {
             'nbSujets' => $Sujets
         ));
 	}
+    public function getInfoByForum($id)
+    {
+        $nbVisitesForum = DB::table('transition')
+            ->where('attribut', 'LIKE', 'IDForum='.$id.'%')
+            ->where('titre', 'Afficher une structure (cours/forum)')
+            ->count();
+
+        $nbUtilisateursForum = DB::table('transition')
+            ->where('attribut', 'LIKE', 'IDForum='.$id.'%')
+            ->distinct()
+            ->get(['utilisateur']);
+        foreach ($nbUtilisateursForum as $u) {
+            if(!empty($u)) $Users[] = $u;
+
+        }
+        $nbReponsesForum = DB::table('transition')
+            ->where('attribut', 'LIKE', 'IDForum='.$id.'%')
+            ->where('titre', 'Répondre à un message')
+            ->count();
+
+        $nbSujetsForums = DB::table('transition')
+            ->where('attribut', 'LIKE', 'IDForum='.$id.'%')
+            ->where('titre', 'Poster un nouveau message')
+            ->count();
+        $nbUsers=count($nbUtilisateursForum);
+        $nbForumMsg = DB::table('transition')
+            ->where('attribut', 'LIKE', 'IDForum='.$id.'%')
+            ->where(function($query){
+                $query->where('titre', 'Poster un nouveau message')
+                    ->orWhere('titre', 'Répondre à un message');
+            })->count();
+        return View::make('infoforum')->with('data',array(
+            'nbVisites'=>$nbVisitesForum,
+            'nbUtilisateurs' => $nbUsers,
+            'nbReponses' => $nbReponsesForum,
+            'nbSujets' => $nbSujetsForums,
+            'nbMsgs' => $nbForumMsg
+
+
+        ));
+    }
 
 }
