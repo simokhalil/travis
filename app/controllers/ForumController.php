@@ -209,6 +209,21 @@ class ForumController extends BaseController {
 
         }
 
+        foreach ($users as $u) {
+            $ReponseUser= DB::table('transition')
+                ->where('Attribut','LIKE', '%IDForum='.$id.'%')
+                ->where('utilisateur', 'LIKE' , $u->utilisateur)
+                ->where('titre','')
+                ->count();
+            echo $u->utilisateur.' = '.$activiteUser.' ';
+            if($MaxNbUserActivite<$activiteUser)
+            {
+                $MaxNbUserActivite=$activiteUser;
+                $MaxUserActivite=$u->utilisateur;
+            }
+        }
+        echo $totalActivite;
+
         return View::make('infoforum')->with('data',array(
             'nbVisites'=>$nbVisitesForum,
             'nbUtilisateurs' => $nbUsers,
