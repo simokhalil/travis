@@ -127,9 +127,7 @@
 @section('scripts')
     <script>
         /* ---------- Pie chart ---------- */
-
        $(function () {
-
         $('#container').highcharts({
                chart: {
                           zoomType: 'x'
@@ -137,15 +135,10 @@
                title: {
                    text: 'Activités'
                },
-
-
-
                xAxis: {
                    type: 'datetime'
                },
-
                series: [{
-
                    data: [<?php
                             foreach($data['activites'] as $activite){
                                echo '[Date.UTC('.$activite[0]->format('Y,m,d,H,i,s').'),'.$activite[1].'],';
@@ -154,7 +147,5 @@
                }]
            });
           });
-
-
     </script>
 @endsection
