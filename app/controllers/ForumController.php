@@ -329,7 +329,6 @@ class ForumController extends BaseController {
             'MaxNbUserActivite' => $MaxNbUserActivite,
             'nbActiviteForum' => $nbActiviteForum,
             'nbActiviteTotal' => $nbActiviteTotal,
-            'ActivitesForum' => $this->$ActivitesForum,
             'idForum' => $id
         ));
     }

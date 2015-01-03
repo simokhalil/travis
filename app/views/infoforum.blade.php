@@ -201,7 +201,7 @@
                     <?php
 /***********************************************A modifier****************************************************/
                         $total = 0;
-                        $activitesForum = $data["ActivitesForum"];
+                        //$activitesForum = $data["ActivitesForum"];
                         //foreach($data[]
 
                     ?>
