@@ -56,6 +56,7 @@
         </div>
         <div class="span3 statbox yellow" style="width: 17%" onTablet="span6" onDesktop="span3">
 
+
             <div class="number"><?php echo $data['nbVisites']; ?><i class=<?php if($data['nbVisites']>50)
                                                                                 {
                                                                                     echo "icon-arrow-up";
@@ -68,6 +69,7 @@
             <div class="footer">
                 <a href="#"> Rapport complet</a>
             </div>
+        </div>
         </div>
         <div class="box black span4" ontablet="span6" ondesktop="span4">
         					<div class="box-header">
@@ -116,10 +118,10 @@
 
         						</ul>
         					</div>
-                        <div id="tauxActivite" style="width: 100%; min-height: 500px; margin: 0 auto"></div>
-        				</div>
+         <div id="tauxActivite" style="width: 100%; min-height: 500px; margin: 0 auto"></div>
+        </div>
 
-    </div>
+
 
     @endsection
 

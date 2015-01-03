@@ -154,7 +154,8 @@
         $(function () {
             $('#ActivitesForum').highcharts({
                 chart: {
-                    type: 'column'
+                    type: 'column',
+                    zoomType:'x'
                 },
                 title: {
                     text: 'Activités sur chaque forum'
@@ -175,7 +176,7 @@
                         text: 'Nombre d\'activités'
                     },
                     stackLabels: {
-                        enabled: true,
+                        enabled: false,
                         style: {
                             fontWeight: 'bold',
                             color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
@@ -204,7 +205,7 @@
                     column: {
                         stacking: 'normal',
                         dataLabels: {
-                            enabled: true,
+                            enabled: false,
                             color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white',
                             style: {
                                 textShadow: '0 0 3px black'

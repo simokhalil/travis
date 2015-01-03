@@ -290,6 +290,7 @@ class ForumController extends BaseController {
             ->count();
 
         $nbActiviteTotal = DB::table('transition')
+            ->where('attribut', 'LIKE', 'IDForum=%')
             ->count();
 
         //echo $nbActiviteForum/$nbActiviteTotal*100;
