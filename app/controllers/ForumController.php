@@ -167,8 +167,47 @@ class ForumController extends BaseController {
             $totalActivite=$totalActivite+$date->count;
 
         }
-        echo $ActiviteMax;
-        echo date_format($DateActiviteMax,'Y-m-d');
+        $sujets = DB::table('transition')
+            ->where('attribut', 'LIKE', 'IDForum='.$id.'%')
+            ->where('titre', 'Poster un nouveau message')
+            ->get(['Attribut']);
+        $maxActivite=0;
+        $maxActiviteSujet=0;
+        foreach ($sujets as $s) {
+            $attrs = parse_attribut($s->Attribut);
+
+            $nbActiviteSujet= DB::table('transition')
+                             ->where('Attribut','LIKE', '%IDMsg='.$attrs['IDMsg'].'%')
+                             ->orWhere('Attribut','LIKE', '%IDParent='.$attrs['IDMsg'])
+                             ->count();
+
+            if($maxActivite<$nbActiviteSujet)
+            {
+                $maxActivite=$nbActiviteSujet;
+                $maxActiviteSujet=$attrs['IDMsg'];
+            }
+
+        }
+        $MaxNbUserActivite=0;
+        $MaxUserActivite=0;
+        $users = DB::table('transition')
+            ->where('attribut', 'LIKE', 'IDForum='.$id.'%')
+            ->distinct()
+            ->get(['utilisateur']);
+        foreach ($users as $u) {
+            $activiteUser= DB::table('transition')
+                           ->where('Attribut','LIKE', '%IDForum='.$id.'%')
+                           ->where('utilisateur', 'LIKE' , $u->utilisateur)
+                           ->count();
+            echo $u->utilisateur.' = '.$activiteUser.' ';
+            if($MaxNbUserActivite<$activiteUser)
+            {
+                $MaxNbUserActivite=$activiteUser;
+                $MaxUserActivite=$u->utilisateur;
+            }
+
+
+        }
 
         return View::make('infoforum')->with('data',array(
             'nbVisites'=>$nbVisitesForum,
@@ -178,7 +217,11 @@ class ForumController extends BaseController {
             'nbMsgs' => $nbForumMsg,
             'ActivitesMax' => $ActiviteMax,
             'DateActiviteMax' => date_format($DateActiviteMax,'Y-m-d'),
-            'TotalActivite' => $totalActivite
+            'TotalActivite' => $totalActivite,
+            'MaxActivite' => $maxActivite,
+            'MaxActiviteSujet' => $maxActiviteSujet,
+            'MaxUserActivite' =>$MaxUserActivite,
+            'MaxNbUserActivite' => $MaxNbUserActivite
 
 
 

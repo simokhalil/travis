@@ -96,6 +96,23 @@
         							   <strong><?php echo $data['ActivitesMax'] ?></strong>
         							</a>
         						  </li>
+        						  <li>
+                                    <a href="#">
+                                     <i class="icon-arrow-down red"></i>
+                                      Sujet qui inscrit le plus d'activités :
+                                       <strong><?php echo $data['MaxActiviteSujet'] ?></strong>
+                                       Avec : <strong><?php echo $data['MaxActivite'] ?></strong>
+                                     </a>
+                                  </li>
+                                   <li>
+                                     <a href="#">
+                                       <i class="icon-arrow-down red"></i>
+                                          Utilisateur le plus actif :
+                                          <strong><?php echo $data['MaxUserActivite'] ?></strong>
+                                          Avec : <strong><?php echo $data['MaxNbUserActivite'] ?></strong>
+                                     </a>
+                                   </li>
+
 
         						</ul>
         					</div>
