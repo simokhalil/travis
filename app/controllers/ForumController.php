@@ -95,6 +95,80 @@ class ForumController extends BaseController {
             $activitesParDate[]=array(DateTime::createFromFormat('Y-m-d',$date->Date), $date->count);
         }
         //print_r('nb forums = '.$nbForums.', nb messages = '.$nbMsg);
+
+        //Stacked column chart
+        /*contient :
+            Afficher une structure (cours/forum)
+            Répondre à un message
+            Afficher le fil de discussion
+            Poster un nouveau message
+            Afficher le contenu d'un message
+            Bouger la scrollbar en bas - afficher la fin du message
+            Citer un message
+            Bouger la scrollbar en bas
+            Download un fichier dans le message
+        */
+        $ActivitesForum = array(
+
+            "AfficherStructure" => array(),
+            "RepondreMessage" => array(),
+            "AfficherFilDiscussion" => array(),
+            "PosterNouveauMessage" => array(),
+            "AfficherContenuMessage" => array(),
+            "BougerScrollbarEnBasEtAfficherFinMessage" => array(),
+            "CiterMessage" => array(),
+            "BougerScrollbarBas" => array(),
+            "DownloaFichierMessage" => array(),
+        );
+        foreach($forums as $forum){
+            $ActivitesForum["AfficherStructure"][$forum] = DB::table('transition')
+                ->where('attribut', 'LIKE', 'IDForum='.$forum.'%')
+                ->where('titre', 'Afficher une structure (cours/forum)')
+                ->count();
+
+            $ActivitesForum["RepondreMessage"][$forum] = DB::table('transition')
+                ->where('attribut', 'LIKE', 'IDForum='.$forum.'%')
+                ->where('titre', 'Répondre à un message')
+                ->count();
+
+            $ActivitesForum["AfficherFilDiscussion"][$forum] = DB::table('transition')
+                ->where('attribut', 'LIKE', 'IDForum='.$forum.'%')
+                ->where('titre', 'Afficher le fil de discussion')
+                ->count();
+
+            $ActivitesForum["PosterNouveauMessage"][$forum] = DB::table('transition')
+                ->where('attribut', 'LIKE', 'IDForum='.$forum.'%')
+                ->where('titre', 'Poster un nouveau message')
+                ->count();
+
+            $ActivitesForum["AfficherContenuMessage"][$forum] = DB::table('transition')
+                ->where('attribut', 'LIKE', 'IDForum='.$forum.'%')
+                ->where('titre', 'Afficher le contenu d\'un message')
+                ->count();
+
+            $ActivitesForum["BougerScrollbarEnBasEtAfficherFinMessage"][$forum] = DB::table('transition')
+                ->where('attribut', 'LIKE', 'IDForum='.$forum.'%')
+                ->where('titre', 'Bouger la scrollbar en bas - afficher la fin du message')
+                ->count();
+
+            $ActivitesForum["CiterMessage"][$forum] = DB::table('transition')
+                ->where('attribut', 'LIKE', 'IDForum='.$forum.'%')
+                ->where('titre', 'Citer un message')
+                ->count();
+
+            $ActivitesForum["BougerScrollbarBas"][$forum] = DB::table('transition')
+                ->where('attribut', 'LIKE', 'IDForum='.$forum.'%')
+                ->where('titre', 'Bouger la scrollbar en bas')
+                ->count();
+
+            $ActivitesForum["DownloaFichierMessage"][$forum] = DB::table('transition')
+                ->where('attribut', 'LIKE', 'IDForum='.$forum.'%')
+                ->where('titre', 'Download un fichier dans le message')
+                ->count();
+            //echo $forum.":".$ActivitesForum["DownloaFichierMessage"][$forum].",";
+        }
+
+
         return View::make('forums')->with('data',array(
             'nbForums'=>$nbForums,
             'nbMsg'=>$nbMsg,
@@ -112,7 +186,8 @@ class ForumController extends BaseController {
             'maxReponses' =>$maxReponsesForum,
             'nbVisites' => $Visites,
             'nbReponses' => $Reponses,
-            'nbSujets' => $Sujets
+            'nbSujets' => $Sujets,
+            'ActivitesForum' => $ActivitesForum
         ));
 	}
     public function getInfoByForum($id)
@@ -219,6 +294,7 @@ class ForumController extends BaseController {
 
         //echo $nbActiviteForum/$nbActiviteTotal*100;
 
+
         foreach ($users as $u) {
             $ReponseUser= DB::table('transition')
                 ->where('Attribut','LIKE', '%IDForum='.$id.'%')
@@ -233,6 +309,10 @@ class ForumController extends BaseController {
             }
         }
         echo $totalActivite;
+
+
+
+
 
         return View::make('infoforum')->with('data',array(
             'nbVisites'=>$nbVisitesForum,

@@ -48,6 +48,7 @@
 
                     </div><!-- End .sparkStats -->
     <div id="container" style="width: 100%; min-height: 500px; margin: 0 auto"></div>
+    <div id="ActivitesForum" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
     <div class="row-fluid sortable">
         <div class="box span12">
             <div class="box-header" data-original-title>
@@ -149,5 +150,169 @@
                }]
            });
           });
+
+        $(function () {
+            $('#ActivitesForum').highcharts({
+                chart: {
+                    type: 'column'
+                },
+                title: {
+                    text: 'Activités sur chaque forum'
+                },
+                xAxis: {
+                    categories: [
+                        <?php
+                        foreach($data['forums'] as $forum){
+                            echo "'".$forum."',";
+                        }
+                    ?>
+                    ]
+                    //categories: ['Apples', 'Oranges', 'Pears', 'Grapes', 'Bananas']
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: 'Nombre d\'activités'
+                    },
+                    stackLabels: {
+                        enabled: true,
+                        style: {
+                            fontWeight: 'bold',
+                            color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
+                        }
+                    }
+                },
+                legend: {
+                    align: 'right',
+                    x: -30,
+                    verticalAlign: 'top',
+                    y: 25,
+                    floating: true,
+                    backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || 'white',
+                    borderColor: '#CCC',
+                    borderWidth: 1,
+                    shadow: false
+                },
+                tooltip: {
+                    formatter: function () {
+                        return '<b>' + this.x + '</b><br/>' +
+                            this.series.name + ': ' + this.y + '<br/>' +
+                            'Total: ' + this.point.stackTotal;
+                    }
+                },
+                plotOptions: {
+                    column: {
+                        stacking: 'normal',
+                        dataLabels: {
+                            enabled: true,
+                            color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white',
+                            style: {
+                                textShadow: '0 0 3px black'
+                            }
+                        }
+                    }
+                },
+                series: [{
+                    name: 'Afficher une structure (cours/forum)',
+                    data: [
+                        <?php
+                            $activitesForum = $data["ActivitesForum"];
+                            foreach($data['forums'] as $forum){
+                                echo $activitesForum["AfficherStructure"][$forum].', ';
+
+                            }
+                        ?>
+                    ]
+                }, {
+                    name: 'Répondre à un message',
+                    data: [
+                        <?php
+                            $activitesForum = $data["ActivitesForum"];
+                            foreach($data['forums'] as $forum){
+                                echo $activitesForum["RepondreMessage"][$forum].', ';
+
+                            }
+                        ?>
+                    ]
+                }, {
+                    name: 'Afficher le fil de discussion',
+                    data: [
+                        <?php
+                            $activitesForum = $data["ActivitesForum"];
+                            foreach($data['forums'] as $forum){
+                                echo $activitesForum["AfficherFilDiscussion"][$forum].', ';
+
+                            }
+                        ?>
+                    ]
+                }, {
+                    name: 'Poster un nouveau message',
+                    data: [
+                        <?php
+                            $activitesForum = $data["ActivitesForum"];
+                            foreach($data['forums'] as $forum){
+                                echo $activitesForum["PosterNouveauMessage"][$forum].', ';
+
+                            }
+                        ?>
+                    ]
+                }, {
+                    name: 'Afficher le contenu d\'un message',
+                    data: [
+                        <?php
+                            $activitesForum = $data["ActivitesForum"];
+                            foreach($data['forums'] as $forum){
+                                echo $activitesForum["AfficherContenuMessage"][$forum].', ';
+
+                            }
+                        ?>
+                    ]
+                }, {
+                    name: 'Bouger la scrollbar en bas - afficher la fin du message',
+                    data: [
+                        <?php
+                            $activitesForum = $data["ActivitesForum"];
+                            foreach($data['forums'] as $forum){
+                                echo $activitesForum["BougerScrollbarEnBasEtAfficherFinMessage"][$forum].', ';
+
+                            }
+                        ?>
+                    ]
+                }, {
+                    name: 'Citer un message',
+                    data: [
+                        <?php
+                            $activitesForum = $data["ActivitesForum"];
+                            foreach($data['forums'] as $forum){
+                                echo $activitesForum["CiterMessage"][$forum].', ';
+
+                            }
+                        ?>
+                    ]
+                }, {
+                    name: 'Bouger la scrollbar en bas',
+                    data: [
+                        <?php
+                            $activitesForum = $data["ActivitesForum"];
+                            foreach($data['forums'] as $forum){
+                                echo $activitesForum["BougerScrollbarBas"][$forum].', ';
+
+                            }
+                        ?>
+                    ]
+                }, {
+                    name: 'Download un fichier dans le message',
+                    data: [
+                        <?php
+                            $activitesForum = $data["ActivitesForum"];
+                            foreach($data['forums'] as $forum){
+                                echo $activitesForum["DownloaFichierMessage"][$forum].', ';
+
+                            }
+                        ?>
+                    ]
+                }]
+            });
+        });
     </script>
 @endsection
