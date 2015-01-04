@@ -21,6 +21,7 @@ class UserController extends BaseController  {
     private $nbMostDelaiUser = 0;
     private $maxDelai = 0;
     private $ActivitesUser;
+    private $nbMsg = 0;
 
     public function __construct(){
         //$attributs = DB::table('transition')->get(['attribut']);
@@ -122,6 +123,7 @@ class UserController extends BaseController  {
             "CiterMessage" => array(),
             "BougerScrollbarBas" => array(),
             "DownloaFichierMessage" => array(),
+            "nbUserMsg" => array()
         );
         foreach($this->users as $u){
             $this->ActivitesUser["AfficherStructure"][$u] = DB::table('transition')
@@ -168,8 +170,23 @@ class UserController extends BaseController  {
                 ->where('Utilisateur', 'LIKE', $u)
                 ->where('titre', 'Download un fichier dans le message')
                 ->count();
+
+            $this->ActivitesUser["nbUserMsg"][$u] = DB::table('transition')
+                ->where('Utilisateur', 'LIKE', $u)
+                ->where(function($query){
+                    $query->where('titre', 'Poster un nouveau message')
+                        ->orWhere('titre', 'Répondre à un message');
+                })
+                ->count();
             //echo $u.":".$ActivitesUser["RepondreMessage"][$u].",";
         }
+        $this->nbMsg = DB::table('transition')
+            ->where(function($query){
+                $query->where('titre', 'Poster un nouveau message')
+                    ->orWhere('titre', 'Répondre à un message');
+            })
+            ->count();
+        //echo $u.":".$ActivitesUser["RepondreMessage"][$u].",";
 
 
 }
@@ -193,7 +210,8 @@ class UserController extends BaseController  {
             'maxMessage' => $this->maxMessage,
             'maxSujet' => $this->maxSujet,
             'maxDelai' => $this->maxDelai,
-            'ActivitesUser' => $this->ActivitesUser
+            'ActivitesUser' => $this->ActivitesUser,
+            'nbMsg' => $this->nbMsg
         ));
 
     }

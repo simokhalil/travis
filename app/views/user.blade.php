@@ -51,6 +51,59 @@ Users
 
 </div><!-- End .sparkStats -->
 <div id="ActivitesUsers" style="min-width: 310px; height: 800px; margin-bottom: 20%"></div>
+
+<div class="box-content">
+    <table class="table table-striped table-bordered bootstrap-datatable datatable">
+        <thead>
+        <tr>
+            <th>Utilisateur</th>
+            <th>Total des Messages</th>
+            <th>Sujets</th>
+            <th>Réponses</th>
+            <th>Consultations</th>
+            <th>Activité</th>
+            <th>Statut</th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php
+        //ig
+        foreach($data['Users'] as $u){
+            $pourcentage = $data['ActivitesUser']['nbUserMsg'][$u] * 100/$data['nbMsg'];
+            ?>
+            <tr>
+                <td>
+                    <a href="<?php echo "/travis/public/user/".$u?>"><?php echo $u; ?></a>
+                </td>
+                <td>
+                    <?php echo $data['ActivitesUser']['nbUserMsg'][$u]; ?>
+                </td>
+                <td>
+                    <?php echo $data['ActivitesUser']['PosterNouveauMessage'][$u]; ?>
+                </td>
+                <td>
+                    <?php echo $data['ActivitesUser']['RepondreMessage'][$u]; ?>
+                </td>
+                <td>
+                    <?php echo $data['ActivitesUser']['AfficherContenuMessage'][$u]; ?>
+                </td>
+                <td>
+                    <?php echo round($pourcentage,2);?>%
+                    <div class="meter blue"><span style="width: <?php echo $pourcentage;?>%"></span></div>
+                </td>
+                <td class="center">
+                                           	<span class="<?php if($pourcentage>1){ echo "label label-success";} else {echo "label label-important";} ?>">
+                                           	  <?php if($pourcentage>1){ echo "Actif";} else {echo "Inactif";}?></span>
+                </td>
+
+            </tr>
+        <?php
+        }
+        ?>
+        </tbody>
+    </table>
+</div>
+</div>
 @endsection
 
 @section('scripts')
