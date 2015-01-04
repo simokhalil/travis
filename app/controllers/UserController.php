@@ -216,8 +216,9 @@ class UserController extends BaseController  {
 
     }
 
-    public function getInfoByUser(){
-        $u=Input::get('nom');
+    public function getInfoByUser($u){
+        //$u=Input::get('nom');
+        //echo $u;
         //print_r('nb forums = '.$nbForums.', nb messages = '.$nbMsg);
         return View::make('infouser')->with('data',array(
             'user' => $u
