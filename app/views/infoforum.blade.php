@@ -1,7 +1,7 @@
 @extends('default')
 
 @section('title')
-    Dashboard
+    Info Forum
 @endsection
 
 

@@ -73,7 +73,7 @@ class UserController extends BaseController  {
 
 
         //print_r('nb forums = '.$nbForums.', nb messages = '.$nbMsg);
-        return View::make('forums')->with('data',array(
+        return View::make('infouser')->with('data',array(
             'nbForums'=>$nbForums,
             'nbMsg'=>$nbMsg,
             'forums'=>$forums,
@@ -81,16 +81,13 @@ class UserController extends BaseController  {
             'nbSujetsForum'=>$nbSujetsForums,
             'nbVisitesForum'=>$nbVisitesForum,
             'nbReponsesForum'=>$nbReponsesForum,
-            'nbUsers'=>$nbUsers
+            'nbUsers'=>$nbUsers,
+            'user' => $u
         ));
 
     }
 
-    function parse_attribut($attribut){
-        $attribut = str_replace(',','&',$attribut);
-        parse_str($attribut, $attrs);
-        return $attrs;
-    }
+
 
 
 
