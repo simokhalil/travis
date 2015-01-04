@@ -21,26 +21,26 @@ Users
     <ul class="unstyled">
 
         <li><input type="text"  value="<?php
-            //echo $data['nbVisitesForum'][$data['maxVisites']] * 100/$data['nbVisites']?>" class="whiteCircle" readonly="readonly" style="width: 60px; position: absolute; margin-top: 42.8571428571429px; margin-left: -90px; font-size: 30px; border: none; font-family: Arial; font-weight: bold; text-align: center; color: rgba(255, 255, 255, 0.901961); padding: 0px; -webkit-appearance: none; background: none;">
+            echo $data['nbMostActiveUser'] * 100/$data['maxActivities']?>" class="whiteCircle" readonly="readonly" style="width: 60px; position: absolute; margin-top: 42.8571428571429px; margin-left: -90px; font-size: 30px; border: none; font-family: Arial; font-weight: bold; text-align: center; color: rgba(255, 255, 255, 0.901961); padding: 0px; -webkit-appearance: none; background: none;">
             Le plus actif:
-            <span class="number"><?php //echo $data['maxVisites'] ?></span>
+            <span class="number"><?php echo $data['mostActiveUser'] ?></span>
         </li>
         <li><input type="text"  value="<?php
-            //echo $data['nbForumMsg'][$data['maxMsgs']] * 100/$data['nbMsg']?>" class="whiteCircle" readonly="readonly" style="width: 60px; position: absolute; margin-top: 42.8571428571429px; margin-left: -90px; font-size: 30px; border: none; font-family: Arial; font-weight: bold; text-align: center; color: rgba(255, 255, 255, 0.901961); padding: 0px; -webkit-appearance: none; background: none;"></span>
+            echo $data['nbMostMessageUser'] * 100/$data['maxMessage']?>" class="whiteCircle" readonly="readonly" style="width: 60px; position: absolute; margin-top: 42.8571428571429px; margin-left: -90px; font-size: 30px; border: none; font-family: Arial; font-weight: bold; text-align: center; color: rgba(255, 255, 255, 0.901961); padding: 0px; -webkit-appearance: none; background: none;"></span>
 
-            Postant le plus de messages:
-            <span class="number"><?php //echo $data['maxMsgs'] ?></span>
+            Répondant au plus de messages:
+            <span class="number"><?php echo $data['mostMessageUser'] ?></span>
         </li>
         <li><input type="text"  value="<?php
-            //echo $data['nbSujetsForum'][$data['maxSujets']] * 100/$data['nbSujets']?>" class="whiteCircle" readonly="readonly" style="width: 60px; position: absolute; margin-top: 42.8571428571429px; margin-left: -90px; font-size: 30px; border: none; font-family: Arial; font-weight: bold; text-align: center; color: rgba(255, 255, 255, 0.901961); padding: 0px; -webkit-appearance: none; background: none;"></span>
+            echo $data['nbMostSujetUser'] * 100/$data['maxSujet']?>" class="whiteCircle" readonly="readonly" style="width: 60px; position: absolute; margin-top: 42.8571428571429px; margin-left: -90px; font-size: 30px; border: none; font-family: Arial; font-weight: bold; text-align: center; color: rgba(255, 255, 255, 0.901961); padding: 0px; -webkit-appearance: none; background: none;"></span>
 
             Postant le plus de sujets:
-            <span class="number"><?php //echo $data['maxSujets'] ?></span>
+            <span class="number"><?php echo $data['mostSujetUser'] ?></span>
         </li>
         <li><input type="text"  value="<?php
-            //echo $data['nbReponsesForum'][$data['maxReponses']] * 100/$data['nbReponses']?>" class="whiteCircle" readonly="readonly" style="width: 60px; position: absolute; margin-top: 42.8571428571429px; margin-left: -90px; font-size: 30px; border: none; font-family: Arial; font-weight: bold; text-align: center; color: rgba(255, 255, 255, 0.901961); padding: 0px; -webkit-appearance: none; background: none;"></span>
+            echo $data['nbMostDelaiUser'] * 100/$data['maxDelai']?>" class="whiteCircle" readonly="readonly" style="width: 60px; position: absolute; margin-top: 42.8571428571429px; margin-left: -90px; font-size: 30px; border: none; font-family: Arial; font-weight: bold; text-align: center; color: rgba(255, 255, 255, 0.901961); padding: 0px; -webkit-appearance: none; background: none;"></span>
 
-            Passant le plus de temps sur le site: <span class="number"><?php //echo $data['maxReponses'] ?></span>
+            Passant le plus de temps sur le site: <span class="number"><?php echo $data['mostDelaiUser'] ?></span>
         </li>
 
 
@@ -48,5 +48,154 @@ Users
 
     <div class="clearfix"></div>
 
+
 </div><!-- End .sparkStats -->
+<div id="ActivitesUsers" style="min-width: 310px; height: 800px; margin-bottom: 20%"></div>
+@endsection
+
+@section('scripts')
+    <script>
+        $(function () {
+            $('#ActivitesUsers').highcharts({
+                chart: {
+                    type: 'column'
+                },
+                title: {
+                    text: 'Activités pour chaque utilisateur'
+                },
+                xAxis: {
+                    categories: [<?php
+                        foreach($data['Users'] as $u)
+                            echo'"'.$u.'", ';
+                    ?>
+                    ]
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: 'Total fruit consumption'
+                    },
+                    stackLabels: {
+                        enabled: true,
+                        style: {
+                            fontWeight: 'bold',
+                            color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
+                        }
+                    }
+                },
+                legend: {
+                    align: 'right',
+                    x: -30,
+                    verticalAlign: 'top',
+                    y: 25,
+                    floating: true,
+                    backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || 'white',
+                    borderColor: '#CCC',
+                    borderWidth: 1,
+                    shadow: false
+                },
+                tooltip: {
+                    formatter: function () {
+                        return '<b>' + this.x + '</b><br/>' +
+                            this.series.name + ': ' + this.y + '<br/>' +
+                            'Total: ' + this.point.stackTotal;
+                    }
+                },
+                plotOptions: {
+                    column: {
+                        stacking: 'normal',
+                        dataLabels: {
+                            enabled: true,
+                            color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white',
+                            style: {
+                                textShadow: '0 0 3px black'
+                            }
+                        }
+                    }
+                },
+                series: [{
+                    name: 'Afficher une structure (cours/forum)',
+                    data: [<?php
+                            $activitesUser = $data["ActivitesUser"];
+                            foreach($data['Users'] as $u){
+                                echo $activitesUser["AfficherStructure"][$u].', ';
+
+                            }
+                        ?>]
+                }, {
+                    name: 'Répondre à un message',
+                    data: [<?php
+                            $activitesUser = $data["ActivitesUser"];
+                            foreach($data['Users'] as $u){
+                                echo $activitesUser["RepondreMessage"][$u].', ';
+
+                            }
+                        ?>]
+                }, {
+                    name: 'Afficher le fil de discussion',
+                    data: [<?php
+                            $activitesUser = $data["ActivitesUser"];
+                            foreach($data['Users'] as $u){
+                                echo $activitesUser["AfficherFilDiscussion"][$u].', ';
+
+                            }
+                        ?>]
+                }, {
+                    name: 'Poster un nouveau message',
+                    data: [<?php
+                            $activitesUser = $data["ActivitesUser"];
+                            foreach($data['Users'] as $u){
+                                echo $activitesUser["PosterNouveauMessage"][$u].', ';
+
+                            }
+                        ?>]
+                }, {
+                    name: 'Afficher le contenu d\'un message',
+                    data: [<?php
+                            $activitesUser = $data["ActivitesUser"];
+                            foreach($data['Users'] as $u){
+                                echo $activitesUser["AfficherContenuMessage"][$u].', ';
+
+                            }
+                        ?>]
+                }, {
+                    name: 'Bouger la scrollbar en bas - afficher la fin du message',
+                    data: [<?php
+                            $activitesUser = $data["ActivitesUser"];
+                            foreach($data['Users'] as $u){
+                                echo $activitesUser["BougerScrollbarEnBasEtAfficherFinMessage"][$u].', ';
+
+                            }
+                        ?>]
+                }, {
+                    name: 'Citer un message',
+                    data: [<?php
+                            $activitesUser = $data["ActivitesUser"];
+                            foreach($data['Users'] as $u){
+                                echo $activitesUser["CiterMessage"][$u].', ';
+
+                            }
+                        ?>]
+                }, {
+                    name: 'Bouger la scrollbar en bas',
+                    data: [<?php
+                            $activitesUser = $data["ActivitesUser"];
+                            foreach($data['Users'] as $u){
+                                echo $activitesUser["BougerScrollbarBas"][$u].', ';
+
+                            }
+                        ?>]
+                }, {
+                    name: 'Download un fichier dans le message',
+                    data: [<?php
+                            $activitesUser = $data["ActivitesUser"];
+                            foreach($data['Users'] as $u){
+                                echo $activitesUser["DownloaFichierMessage"][$u].', ';
+
+                            }
+                        ?>]
+                }]
+            });
+        });
+    </script>
 @endsection
