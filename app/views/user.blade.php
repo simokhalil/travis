@@ -68,7 +68,7 @@ Users
             ?>
             <tr>
                 <td>
-                    <a href="<?php echo "/travis/public/user/".$u?>"><?php echo $u; ?></a>
+                    <a href="<?php echo "user/".$u?>"><?php echo $u; ?></a>
                 </td>
                 <td>
                     <?php echo $data['ActivitesUser']['nbUserMsg'][$u]; ?>
