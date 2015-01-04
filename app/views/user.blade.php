@@ -11,7 +11,7 @@ Users
     </li>
     <li><a href="#">Utilisateurs</a></li>
 </ul>
- {{ Form::open(array('url' =>  'users')) }}
+ {{ Form::open(array('url' =>  'user')) }}
         {{ Form::label('nom', 'Entrez votre nom : ') }}
         {{ Form::text('nom') }}
         {{ Form::submit('Envoyer !') }}
@@ -50,7 +50,7 @@ Users
 
 
 </div><!-- End .sparkStats -->
-<div id="ActivitesUsers" style="min-width: 310px; height: 800px; margin-bottom: 20%"></div>
+<div id="ActivitesUsers" style="min-width: 310px; height: 800px; margin-bottom: 25%"></div>
 
 <div class="box-content">
     <table class="table table-striped table-bordered bootstrap-datatable datatable">
