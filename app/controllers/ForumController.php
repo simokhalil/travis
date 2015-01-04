@@ -228,27 +228,60 @@ class ForumController extends BaseController {
             ->select(DB::raw('Date, count(*) as count'))
             ->where('attribut', 'LIKE', 'IDForum='.$id.'%')
             ->groupBy('Date')
+            ->orderBy('count','dsc')
             ->get();
+
         $totalActivite=0;
-        $ActiviteMax=0;
-        $DateActiviteMax=0;
-        foreach ($dates as $date) {
+        $ActiviteMax=array();
+        $DateActiviteMax=array();
+        $ActiviteMin=array();
+        $DateActiviteMin=array();
+        $size=0;
+        $i=0;
+        foreach($dates as $date)
+        {
+            $size++;
+        }
 
-            if($date->count>$ActiviteMax)
-            {
-                $ActiviteMax=$date->count;
-                $DateActiviteMax= DateTime::createFromFormat('Y-m-d',$date->Date);
+       while($i<5) {
 
-            }
-            $totalActivite=$totalActivite+$date->count;
+                $ActiviteMin[]=$dates[$size-$i-1]->count;
+                $DateActiviteMin[]=$dates[$size-$i-1]->Date;
+                $ActiviteMax[]=$dates[$i]->count;
+                $DateActiviteMax[]= $dates[$i]->Date;
+                    //DateTime::createFromFormat('Y-m-d',$date->Date);
+                $i++;
 
         }
+        foreach($dates as $date)
+        {
+
+            $totalActivite=$totalActivite+$date->count;
+        }
+
         $sujets = DB::table('transition')
             ->where('attribut', 'LIKE', 'IDForum='.$id.'%')
             ->where('titre', 'Poster un nouveau message')
             ->get(['Attribut']);
-        $maxActivite=0;
-        $maxActiviteSujet=0;
+
+        $maxNbActiviteSujet=array();
+        $maxActiviteSujet=array();
+        $minNbActiviteSujet=array();
+        $minActiviteSujet=array();
+        $max1=0;
+        $max2=0;
+        $max3=0;
+        $max4=0;
+        $max5=0;
+
+        $min1= PHP_INT_MAX;
+        $min2= PHP_INT_MAX;
+        $min3= PHP_INT_MAX;
+        $min4= PHP_INT_MAX;
+        $min5= PHP_INT_MAX;
+
+
+
         foreach ($sujets as $s) {
             $attrs = parse_attribut($s->Attribut);
 
@@ -256,26 +289,141 @@ class ForumController extends BaseController {
                              ->where('Attribut','LIKE', '%IDMsg='.$attrs['IDMsg'].'%')
                              ->orWhere('Attribut','LIKE', '%IDParent='.$attrs['IDMsg'])
                              ->count();
-
-            if($maxActivite<$nbActiviteSujet)
+            if($nbActiviteSujet>=$max5)
             {
-                $maxActivite=$nbActiviteSujet;
-                $maxActiviteSujet=$attrs['IDMsg'];
+                if($nbActiviteSujet>=$max4)
+                {
+                       if($nbActiviteSujet>=$max3) {
+
+                               if($nbActiviteSujet>=$max2) {
+                                  if($nbActiviteSujet>=$max1) {
+                                      $max1=$nbActiviteSujet;
+                                      $maxs1=$attrs['IDMsg'];
+                                  }
+                                  else
+                                  {
+                                       $max2=$nbActiviteSujet;
+                                       $maxs2=$attrs['IDMsg'];
+                                  }
+                               }
+                               else
+                               {
+                                 $max3=$nbActiviteSujet;
+                                 $maxs3=$attrs['IDMsg'];
+                               }
+
+                       }
+                        else
+                        {
+                             $max4=$nbActiviteSujet;
+                             $maxs4=$attrs['IDMsg'];
+                        }
+                }
+                else
+                {
+                    $max5=$nbActiviteSujet;
+                    $maxs5=$attrs['IDMsg'];
+                }
+
             }
 
+
+            if($nbActiviteSujet<=$min5)
+            {
+                if($nbActiviteSujet<=$min4)
+                {
+                    if($nbActiviteSujet<=$min3) {
+
+                        if($nbActiviteSujet<=$min2) {
+                            if($nbActiviteSujet<=$min1) {
+                                $min1=$nbActiviteSujet;
+                                $mins1=$attrs['IDMsg'];
+                            }
+                            else
+                            {
+                                $min2=$nbActiviteSujet;
+                                $mins2=$attrs['IDMsg'];
+                            }
+                        }
+                        else
+                        {
+                            $min3=$nbActiviteSujet;
+                            $mins3=$attrs['IDMsg'];
+                        }
+
+                    }
+                    else
+                    {
+                        $min4=$nbActiviteSujet;
+                        $mins4=$attrs['IDMsg'];
+                    }
+                }
+                else
+                {
+                    $min5=$nbActiviteSujet;
+                    $mins5=$attrs['IDMsg'];
+                }
+
+            }
+
+
         }
-        $MaxNbUserActivite=0;
-        $MaxUserActivite=0;
+        $maxNbActiviteSujet[]=$max1;
+        $maxActiviteSujet[]=$maxs1;
+        $maxNbActiviteSujet[]=$max2;
+        $maxActiviteSujet[]=$maxs2;
+        $maxNbActiviteSujet[]=$max3;
+        $maxActiviteSujet[]=$maxs3;
+        $maxNbActiviteSujet[]=$max4;
+        $maxActiviteSujet[]=$maxs4;
+        $maxNbActiviteSujet[]=$max5;
+        $maxActiviteSujet[]=$maxs5;
+
+        $minNbActiviteSujet[]=$min1;
+        $minActiviteSujet[]=$mins1;
+        $minNbActiviteSujet[]=$min2;
+        $minActiviteSujet[]=$mins2;
+        $minNbActiviteSujet[]=$min3;
+        $minActiviteSujet[]=$mins3;
+        $minNbActiviteSujet[]=$min4;
+        $minActiviteSujet[]=$mins4;
+        $minNbActiviteSujet[]=$min5;
+        $minActiviteSujet[]=$mins5;
+
+        $MinNbUserActivite=array();
+        $MinUserActivite=array();
+        $MaxNbUserActivite=array();
+        $MaxUserActivite=array();
+
+        $i=0;
         $users = DB::table('transition')
+            ->select(DB::raw('Utilisateur, count(*) as count'))
             ->where('attribut', 'LIKE', 'IDForum='.$id.'%')
-            ->distinct()
-            ->get(['utilisateur']);
-        foreach ($users as $u) {
+            ->groupBy('utilisateur')
+            ->orderBy('count','dsc')
+            ->get();
+        $size=0;
+        foreach($users as $u)
+        {
+            $size++;
+        }
+        $i=0;
+        while($i<5) {
+
+            $MinNbUserActivite[]=$users[$size-$i-1]->count;
+            $MinUserActivite[]=$users[$size-$i-1]->Utilisateur;
+            $MaxNbUserActivite[]=$users[$i]->count;
+            $MaxUserActivite[]= $users[$i]->Utilisateur;
+
+            $i++;
+
+        }
+        /*foreach ($users as $u) {
             $activiteUser= DB::table('transition')
                            ->where('Attribut','LIKE', '%IDForum='.$id.'%')
                            ->where('utilisateur', 'LIKE' , $u->utilisateur)
-                           ->count();
-            echo $u->utilisateur.' = '.$activiteUser.' ';
+                         ->count();
+
             if($MaxNbUserActivite<$activiteUser)
             {
                 $MaxNbUserActivite=$activiteUser;
@@ -283,7 +431,7 @@ class ForumController extends BaseController {
             }
 
 
-        }
+        }*/
 
         // Camembert Répartition des activités utilisateurs
         $nbActiviteForum = DB::table('transition')
@@ -297,20 +445,20 @@ class ForumController extends BaseController {
         //echo $nbActiviteForum/$nbActiviteTotal*100;
 
 
-        foreach ($users as $u) {
+        /*foreach ($users as $u) {
             $ReponseUser= DB::table('transition')
                 ->where('Attribut','LIKE', '%IDForum='.$id.'%')
                 ->where('utilisateur', 'LIKE' , $u->utilisateur)
                 ->where('titre','')
                 ->count();
-            echo $u->utilisateur.' = '.$activiteUser.' ';
+
             if($MaxNbUserActivite<$activiteUser)
             {
                 $MaxNbUserActivite=$activiteUser;
                 $MaxUserActivite=$u->utilisateur;
             }
-        }
-        echo $totalActivite;
+        }*/
+
 
 
 
@@ -321,12 +469,18 @@ class ForumController extends BaseController {
             'nbSujets' => $nbSujetsForums,
             'nbMsgs' => $nbForumMsg,
             'ActivitesMax' => $ActiviteMax,
-            'DateActiviteMax' => date_format($DateActiviteMax,'Y-m-d'),
+            'DateActiviteMax' => $DateActiviteMax,
+            'ActivitesMin' => $ActiviteMin,
+            'DateActiviteMin' => $DateActiviteMin,
             'TotalActivite' => $totalActivite,
-            'MaxActivite' => $maxActivite,
+            'MaxNbActiviteSujet' => $maxNbActiviteSujet,
             'MaxActiviteSujet' => $maxActiviteSujet,
+            'MinNbActiviteSujet' => $minNbActiviteSujet,
+            'MinActiviteSujet' => $minActiviteSujet,
             'MaxUserActivite' =>$MaxUserActivite,
             'MaxNbUserActivite' => $MaxNbUserActivite,
+            'MinUserActivite' =>$MinUserActivite,
+            'MinNbUserActivite' => $MinNbUserActivite,
             'nbActiviteForum' => $nbActiviteForum,
             'nbActiviteTotal' => $nbActiviteTotal,
             'idForum' => $id
