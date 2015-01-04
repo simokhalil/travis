@@ -443,7 +443,13 @@ class ForumController extends BaseController {
             ->count();
 
         //echo $nbActiviteForum/$nbActiviteTotal*100;
+        $activities = DB::table('transition')->where('attribut', 'LIKE', 'IDForum='.$id.'%')->distinct()->get(['titre']);
 
+        $nbActivities = array();
+        foreach($activities as $activity){
+            $activityName = $activity->titre;
+            $nbActivities[$activity->titre] = round((DB::table('transition')->where('attribut', 'LIKE', 'IDForum='.$id.'%')->where('titre', 'LIKE', $activity->titre)->count())*100/$nbActiviteTotal, 2);
+        }
 
         /*foreach ($users as $u) {
             $ReponseUser= DB::table('transition')
@@ -483,7 +489,9 @@ class ForumController extends BaseController {
             'MinNbUserActivite' => $MinNbUserActivite,
             'nbActiviteForum' => $nbActiviteForum,
             'nbActiviteTotal' => $nbActiviteTotal,
-            'idForum' => $id
+            'idForum' => $id,
+            'activities'=>$activities,
+            'activitiesPercentage'=>$nbActivities
         ));
     }
 
