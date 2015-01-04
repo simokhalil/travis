@@ -11,11 +11,6 @@ Users
     </li>
     <li><a href="#">Utilisateurs</a></li>
 </ul>
- {{ Form::open(array('url' =>  'user')) }}
-        {{ Form::label('nom', 'Entrez votre nom : ') }}
-        {{ Form::text('nom') }}
-        {{ Form::submit('Envoyer !') }}
- {{ Form::close() }}
 <div class="sparkLineStats span4 widget green" onTablet="span5" onDesktop="span4">
 
     <ul class="unstyled">
@@ -73,7 +68,7 @@ Users
             ?>
             <tr>
                 <td>
-                    <a href="<?php echo "/travis/public/user/".$u?>"><?php echo $u; ?></a>
+                    <a href="<?php echo "user/".$u?>"><?php echo $u; ?></a>
                 </td>
                 <td>
                     <?php echo $data['ActivitesUser']['nbUserMsg'][$u]; ?>
