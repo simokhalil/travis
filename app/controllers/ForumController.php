@@ -483,7 +483,7 @@ class ForumController extends BaseController {
         }
         $nbSujetsTotal = DB::table('transition')->where('titre','Poster un nouveau message')->count();
         echo $nbSujetsForums;
-        die();
+
         echo $nbSujetsTotal;
         return View::make('infoforum')->with('data',array(
             'nbVisites'=>$nbVisitesForum,
