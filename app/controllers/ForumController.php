@@ -465,9 +465,26 @@ class ForumController extends BaseController {
             }
         }*/
 
+        $historique = DB::table('transition')
+            ->where('attribut', 'LIKE', 'IDForum='.$id.'%')
+            ->where('date','=','2009-02-23')
+            ->get();
 
+        $historiqueUser=array();
+        $historiqueTitre=array();
+        $historiqueDate=array();
+        $historiqueTime=array();
+        foreach($historique as $h){
+            $historiqueUser[]=$h->Utilisateur;
+            $historiqueTitre[]=$h->Titre;
+            $historiqueDate[]=$h->Date;
+            $historiqueTime[]=$h->Heure;
 
-
+        }
+        $nbSujetsTotal = DB::table('transition')->where('titre','Poster un nouveau message')->count();
+        echo $nbSujetsForums;
+        die();
+        echo $nbSujetsTotal;
         return View::make('infoforum')->with('data',array(
             'nbVisites'=>$nbVisitesForum,
             'nbUtilisateurs' => $nbUsers,
@@ -491,7 +508,12 @@ class ForumController extends BaseController {
             'nbActiviteTotal' => $nbActiviteTotal,
             'idForum' => $id,
             'activities'=>$activities,
-            'activitiesPercentage'=>$nbActivities
+            'activitiesPercentage'=>$nbActivities,
+            'historiqueUser'=>$historiqueUser,
+            'historiqueTitre'=>$historiqueTitre,
+            'historiqueDate'=>$historiqueDate,
+            'historiqueTime'=>$historiqueTime,
+            'nbSujetTotal'=>$nbSujetsTotal
         ));
     }
 
