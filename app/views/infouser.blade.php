@@ -20,7 +20,7 @@ Info User
 </ul>
 
 
-<div class="span3 statbox red" style="width: 25%" onTablet="span6" onDesktop="span3">
+<div class="span4 statbox red"  onTablet="span6" onDesktop="span3">
 
     <div class="number"><?php echo $data['ActivitesUser']['PosterNouveauMessage'][$data['user']]; ?> <i
             class="icon-folder-open-alt"></i></div>
@@ -29,7 +29,7 @@ Info User
         <a href="{{URL::to('users')}}"> Rapport complet</a>
     </div>
 </div>
-<div class="span3 statbox purple" style="width: 25%" onTablet="span6" onDesktop="span3">
+<div class="span4 statbox purple"  onTablet="span6" onDesktop="span3">
 
     <div class="number"><?php echo $data['ActivitesUser']['RepondreMessage'][$data['user']] ?> <i class="icon-ok"></i>
     </div>
@@ -38,7 +38,7 @@ Info User
         <a href="{{URL::to('users')}}"> Rapport complet</a>
     </div>
 </div>
-<div class="span3 statbox green" style="width: 25%" onTablet="span6" onDesktop="span3">
+<div class="span4 statbox green"  onTablet="span6" onDesktop="span3">
 
     <div class="number"><?php echo $data['ActivitesUser']['nbUserMsg'][$data['user']]; ?><i class="icon-file-alt"></i>
     </div>
@@ -172,22 +172,30 @@ Info User
                 <?php
                 $i = 0;
                 foreach ($data['MaxNbForumActivite'] as $d) {
-                    echo '<li><a href="#">';
-                    echo '<i class="icon-arrow-up green"></i>';
+                    if($data['MaxForumActivite'][$i] != "") {
+                        echo '<li><a href="#">';
+                        echo '<i class="icon-arrow-up green"></i>';
 
-                    echo 'Le ';
-                    echo '<strong>';
-                    echo $data['MaxForumActivite'][$i];
-                    echo '</strong>';
+                        echo 'Le ';
+                        echo '<strong>';
+                        echo $data['MaxForumActivite'][$i];
+                        echo '</strong>';
 
-                    echo ' ce qui represente : ';
-                    echo '<strong>';
-                    echo number_format($d * 100 / $data['TotalActivite'], 2) . '%';
-                    echo '</strong>';
-                    echo ' de l\'activité';
-                    echo '</a>';
-                    echo '</li>';
+                        echo ' ce qui represente : ';
+                        echo '<strong>';
+                        echo number_format($d * 100 / $data['TotalActivite'], 2) . '%';
+                        echo '</strong>';
+                        echo ' de l\'activité';
+                        echo '</a>';
+                        echo '</li>';
 
+
+                    }
+                    elseif($i==0){
+                        echo '<li><a><i class="icon-arrow-up green"></i>';
+                        echo 'Aucune donnée à afficher';
+                        echo '</a></li>';
+                    }
                     $i++;
                 }
                 ?>
@@ -211,22 +219,30 @@ Info User
                 <?php
                 $i = 0;
                 foreach ($data['MinNbForumActivite'] as $d) {
-                    echo '<li><a href="#">';
-                    echo '<i class="icon-arrow-down red"></i>';
+                    if($data['MinForumActivite'][$i] != "") {
+                        echo '<li><a href="#">';
+                        echo '<i class="icon-arrow-down red"></i>';
 
-                    echo 'Le ';
-                    echo '<strong>';
-                    echo $data['MinForumActivite'][$i];
-                    echo '</strong>';
+                        echo 'Le ';
+                        echo '<strong>';
+                        echo $data['MinForumActivite'][$i];
+                        echo '</strong>';
 
-                    echo ' ce qui represente : ';
-                    echo '<strong>';
-                    echo number_format($d * 100 / $data['TotalActivite'], 2) . '%';
-                    echo '</strong>';
-                    echo ' de l\'activité';
-                    echo '</a>';
-                    echo '</li>';
+                        echo ' ce qui represente : ';
+                        echo '<strong>';
+                        echo number_format($d * 100 / $data['TotalActivite'], 2) . '%';
+                        echo '</strong>';
+                        echo ' de l\'activité';
+                        echo '</a>';
+                        echo '</li>';
 
+
+                    }
+                    elseif($i==0){
+                        echo '<li><a><i class="icon-arrow-up green"></i>';
+                        echo 'Aucune donnée à afficher';
+                        echo '</a></li>';
+                    }
                     $i++;
                 }
                 ?>
@@ -251,24 +267,34 @@ Info User
             <ul class="dashboard-list metro">
                 <?php
                 $i = 0;
+
                 foreach ($data['MaxNbActiviteSujet'] as $d) {
-                    echo '<li><a href="#">';
-                    echo '<i class="icon-arrow-up green"></i>';
+                    if(isset($data['MaxActiviteSujet'][$i])){
+                        echo '<li><a href="#">';
+                        echo '<i class="icon-arrow-up green"></i>';
 
 
-                    echo '<strong>';
-                    echo $data['MaxActiviteSujet'][$i];
-                    echo '</strong>';
+                        echo '<strong>';
+                        echo $data['MaxActiviteSujet'][$i];
+                        echo '</strong>';
 
-                    echo ' ce qui represente : ';
-                    echo '<strong>';
-                    echo number_format($d * 100 / $data['TotalActivite'], 2) . '%';
-                    echo '</strong>';
-                    echo ' de l\'activité';
-                    echo '</a>';
-                    echo '</li>';
+                        echo ' ce qui represente : ';
+                        echo '<strong>';
+                        echo number_format($d * 100 / $data['TotalActivite'], 2) . '%';
+                        echo '</strong>';
+                        echo ' de l\'activité';
+                        echo '</a>';
+                        echo '</li>';
 
+
+                    }
+                    elseif($i==0){
+                        echo '<li><a><i class="icon-arrow-up green"></i>';
+                        echo 'Aucune donnée à afficher';
+                        echo '</a></li>';
+                    }
                     $i++;
+
                 }
                 ?>
             </ul>
@@ -291,21 +317,28 @@ Info User
                 <?php
                 $i = 0;
                 foreach ($data['MinNbActiviteSujet'] as $d) {
-                    echo '<li><a href="#">';
-                    echo '<i class="icon-arrow-down red"></i>';
+                    if(isset($data['MinActiviteSujet'][$i])) {
+                        echo '<li><a href="#">';
+                        echo '<i class="icon-arrow-down red"></i>';
 
-                    echo 'Le ';
-                    echo '<strong>';
-                    echo $data['MinActiviteSujet'][$i];
-                    echo '</strong>';
+                        echo 'Le ';
+                        echo '<strong>';
+                        echo $data['MinActiviteSujet'][$i];
+                        echo '</strong>';
 
-                    echo ' ce qui represente : ';
-                    echo '<strong>';
-                    echo number_format($d * 100 / $data['TotalActivite'], 2) . '%';
-                    echo '</strong>';
-                    echo ' de l\'activité';
-                    echo '</a>';
-                    echo '</li>';
+                        echo ' ce qui represente : ';
+                        echo '<strong>';
+                        echo number_format($d * 100 / $data['TotalActivite'], 2) . '%';
+                        echo '</strong>';
+                        echo ' de l\'activité';
+                        echo '</a>';
+                        echo '</li>';
+                    }
+                    elseif($i==0){
+                        echo '<li><a><i class="icon-arrow-up green"></i>';
+                        echo 'Aucune donnée à afficher';
+                        echo '</a></li>';
+                    }
 
                     $i++;
                 }

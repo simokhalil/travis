@@ -252,10 +252,16 @@ class UserController extends BaseController  {
 
         while($i<5) {
 
-            $ActiviteMin[]=$dates[$size-$i-1]->count;
-            $DateActiviteMin[]=$dates[$size-$i-1]->Date;
-            $ActiviteMax[]=$dates[$i]->count;
-            $DateActiviteMax[]= $dates[$i]->Date;
+            if(isset($dates[$size-$i-1])){
+                $ActiviteMin[]=$dates[$size-$i-1]->count;
+                $DateActiviteMin[]=$dates[$size-$i-1]->Date;
+            }
+            if(isset($dates[$i]))
+            {
+                $ActiviteMax[]=$dates[$i]->count;
+                $DateActiviteMax[]= $dates[$i]->Date;
+            }
+
             //DateTime::createFromFormat('Y-m-d',$date->Date);
             $i++;
 
@@ -376,26 +382,36 @@ class UserController extends BaseController  {
 
         }
         $maxNbActiviteSujet[]=$max1;
-        $maxActiviteSujet[]=$maxs1;
+        if(isset($maxs1))
+            $maxActiviteSujet[]=$maxs1;
         $maxNbActiviteSujet[]=$max2;
-        $maxActiviteSujet[]=$maxs2;
+        if(isset($maxs2))
+            $maxActiviteSujet[]=$maxs2;
         $maxNbActiviteSujet[]=$max3;
-        $maxActiviteSujet[]=$maxs3;
+        if(isset($maxs3))
+            $maxActiviteSujet[]=$maxs3;
         $maxNbActiviteSujet[]=$max4;
-        $maxActiviteSujet[]=$maxs4;
+        if(isset($maxs4))
+            $maxActiviteSujet[]=$maxs4;
         $maxNbActiviteSujet[]=$max5;
-        $maxActiviteSujet[]=$maxs5;
+        if(isset($maxs5))
+            $maxActiviteSujet[]=$maxs5;
 
         $minNbActiviteSujet[]=$min1;
-        $minActiviteSujet[]=$mins1;
+        if(isset($mins1))
+            $minActiviteSujet[]=$mins1;
         $minNbActiviteSujet[]=$min2;
-        $minActiviteSujet[]=$mins2;
+        if(isset($mins2))
+            $minActiviteSujet[]=$mins2;
         $minNbActiviteSujet[]=$min3;
-        $minActiviteSujet[]=$mins3;
+        if(isset($mins3))
+            $minActiviteSujet[]=$mins3;
         $minNbActiviteSujet[]=$min4;
-        $minActiviteSujet[]=$mins4;
+        if(isset($mins4))
+            $minActiviteSujet[]=$mins4;
         $minNbActiviteSujet[]=$min5;
-        $minActiviteSujet[]=$mins5;
+        if(isset($mins5))
+            $minActiviteSujet[]=$mins5;
 
         $MinNbForumActivite=array();
         $MinForumActivite=array();
@@ -432,7 +448,7 @@ class UserController extends BaseController  {
 
         }
 
-
+        $tabtemp2=$tabtemp;
         for ($i=1; $i<6;$i++){
             $top[$i]=array();
             $top[$i][0]="";
@@ -440,23 +456,28 @@ class UserController extends BaseController  {
 
             $min[$i]=array();
             $min[$i][0]="";
-            $min[$i][1]=-1;
+            $min[$i][1]=PHP_INT_MAX;
 
             foreach($tabtemp as $key => $value){
                 //echo $key.'->'.$value.' ';
                 if($value >$top[$i][1]){
                     $top[$i][0]=$key;
                     $top[$i][1]=$value;
-                }
-                if($min[$i][1]==-1 || ($value < $min[$i][1] && $value > -1)){
-                    $min[$i][0]=$key;
-                    $min[$i][1]=$value;
-                    //echo $min[$i][1];
+                    //echo $key."->". $value." ";
                 }
 
             }
+            foreach($tabtemp2 as $key => $value){
+                if($value < $min[$i][1] && $value > -1){
+                    $min[$i][0]=$key;
+                    $min[$i][1]=$value;
+                    //echo $key."->". $value." ";
+                }
+
+            }
+            //echo "<br>";
             $tabtemp[$top[$i][0]]=0;
-            $tabtemp[$min[$i][0]]=-1;
+            $tabtemp2[$min[$i][0]]=-1;
         }
 
 
@@ -468,6 +489,8 @@ class UserController extends BaseController  {
             $size++;
         }
         $i=1;
+        //print_r($min);
+        //print_r($top);
         while($i<6) {
 
             $MinNbForumActivite[]=$min[$i][1];
