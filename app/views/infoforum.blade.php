@@ -41,8 +41,6 @@
     </div>
 
     <div class="row-fluid">
-
-
         <div class="span3 statbox red" style="width: 17%" onTablet="span6" onDesktop="span3">
 
             <div class="number"><?php echo $data['nbSujets']; ?> <i class="icon-folder-open-alt"></i></div>
