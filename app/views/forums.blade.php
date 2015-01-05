@@ -80,7 +80,7 @@
                                     ?>
                                         <tr>
                                             <td>
-                                                <a href="<?php echo "forum/".$forum?>"><?php echo $forum; ?></a>
+                                                <a href="<?php echo "/travis1/public/forum/".$forum?>"><?php echo $forum; ?></a>
                                             </td>
                                             <td>
                                                 <?php echo $data['nbForumMsg'][$forum]; ?>
@@ -96,7 +96,7 @@
                                             </td>
                                             <td>
                                                 <?php echo round($pourcentage,2);?>%
-                                                <div class="meter blue"><span style="width: <?php echo $pourcentage;?>%"></span></div>
+                                                <div class="meter blue"><span ><?php echo $pourcentage;?>%"></span></div>
                                             </td>
                                             <td class="center">
                                            	<span class="<?php if($pourcentage>1){ echo "label label-success";} else {echo "label label-important";} ?>">

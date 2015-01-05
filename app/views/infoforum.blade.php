@@ -300,14 +300,39 @@
                             </div>
                             <div class="box-content">
                                 <ul class="dashboard-list metro">
-                                    <li class="green">
-                                        <a href="#">
-                                            <img class="avatar" alt="Dennis Ji" src="img/avatar.jpg">
-                                        </a>
-                                        <strong>Name:</strong> Dennis Ji<br>
-                                        <strong>Since:</strong> Jul 25, 2012 11:09<br>
-                                        <strong>Status:</strong> Approved
-                                    </li>
+                                <?php
+                                $i=0;
+                                $j=0;
+                                $couleur=["green","yellow","red","blue"];
+                                foreach($data['historiqueUser'] as $u){
+                                 if($j<3)
+                                 {
+                                    $j++;
+                                 }
+                                 else
+                                 {
+                                     $j=0;
+                                 }
+                                    echo'<li class='.$couleur[$j].'>';
+
+
+                                        echo '<strong>';
+                                        echo 'Nom: ';
+                                        echo '</strong>';
+                                        echo $u;
+                                        echo '<br>';
+                                        echo '<strong>';
+                                        echo 'Titre: ';
+                                        echo '</strong>';
+                                        echo $data['historiqueTitre'][$i];
+                                        echo '<br>';
+                                        echo '<strong>';
+                                        echo 'Date: ';
+                                        echo '</strong>';
+                                        echo $data['historiqueDate'][$i];
+                                    echo '</li>';
+                                    }
+                                ?>
                                     <li class="yellow">
                                         <a href="#">
                                             <img class="avatar" alt="Dennis Ji" src="img/avatar.jpg">
