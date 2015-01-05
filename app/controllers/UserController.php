@@ -220,9 +220,60 @@ class UserController extends BaseController  {
         //$u=Input::get('nom');
         //echo $u;
         //print_r('nb forums = '.$nbForums.', nb messages = '.$nbMsg);
+        // Camembert Répartition des activités utilisateurs
+        $nbActiviteUser = DB::table('transition')
+            ->where('Utilisateur', 'LIKE', $u)
+            ->count();
+
+        $nbActiviteTotal = DB::table('transition')
+            ->count();
+
+        // $results = DB::select('select DISTINCT Date from transition where attribut LIKE "IDForum='.$id.'%"', array());
+        $dates = DB::table('transition')
+            ->select(DB::raw('Date, count(*) as count'))
+            ->where('Utilisateur', 'LIKE', $u)
+            ->groupBy('Date')
+            ->orderBy('count','dsc')
+            ->get();
+
+        $totalActivite=0;
+        $ActiviteMax=array();
+        $DateActiviteMax=array();
+        $ActiviteMin=array();
+        $DateActiviteMin=array();
+        $size=0;
+        $i=0;
+
+        foreach($dates as $date)
+        {
+            $size++;
+        }
+
+        while($i<5) {
+
+            $ActiviteMin[]=$dates[$size-$i-1]->count;
+            $DateActiviteMin[]=$dates[$size-$i-1]->Date;
+            $ActiviteMax[]=$dates[$i]->count;
+            $DateActiviteMax[]= $dates[$i]->Date;
+            //DateTime::createFromFormat('Y-m-d',$date->Date);
+            $i++;
+
+        }
+        foreach($dates as $date)
+        {
+
+            $totalActivite=$totalActivite+$date->count;
+        }
         return View::make('infouser')->with('data',array(
-            'user' => $u
+            'user' => $u,
+            'ActivitesUser' => $this->ActivitesUser,
+            'nbActiviteUser' => $nbActiviteUser,
+            'nbActiviteTotal' => $nbActiviteTotal,
+            'ActivitesMax' => $ActiviteMax,
+            'DateActiviteMax' => $DateActiviteMax,
+            'TotalActivite' => $totalActivite
         ));
+
     }
 
         /*public function getInfo()
