@@ -18,6 +18,44 @@
     </ul>
 
     <div class="row-fluid">
+       <div class="circleStatsItemBox pink">
+       						<div class="header">CPU</div>
+       						<span class="percent">percent</span>
+                           	<div class="circleStat">
+                           		<div style="width:120px;display:inline;&quot;"><canvas width="120" height="120"></canvas><input type="text" value="83" class="whiteCircle" readonly="readonly" style="width: 60px; position: absolute; margin-top: 42.8571428571429px; margin-left: -90px; font-size: 30px; border: none; font-family: Arial; font-weight: bold; text-align: center; color: rgba(255, 255, 255, 0.901961); padding: 0px; -webkit-appearance: none; background: none;"></div>
+       						</div>
+       						<div class="footer">
+       							<span class="count">
+       								<span class="number">{{$data['nbSujets']}}</span>
+       								<span class="unit">GHz</span>
+
+       							</span>
+       							<span class="sep"> / </span>
+       							<span class="value">
+       								<span class="number"><?php echo $data['nbSujetTotal']; ?></span>
+       								<span class="unit">GHz</span>
+       							</span>
+       						</div>
+                       	</div>
+
+                       	<div class="circleStatsItemBox pink">
+                        						<div class="header">CPU</div>
+                        						<span class="percent">percent</span>
+                                            	<div class="circleStat">
+                                            		<div style="width:120px;display:inline;&quot;"><canvas width="120" height="120"></canvas><input type="text" value="83" class="whiteCircle" readonly="readonly" style="width: 60px; position: absolute; margin-top: 42.8571428571429px; margin-left: -90px; font-size: 30px; border: none; font-family: Arial; font-weight: bold; text-align: center; color: rgba(255, 255, 255, 0.901961); padding: 0px; -webkit-appearance: none; background: none;"></div>
+                        						</div>
+                        						<div class="footer">
+                        							<span class="count">
+                        								<span class="number">3</span>
+                        								<span class="unit">GHz</span>
+                        							</span>
+                        							<span class="sep"> / </span>
+                        							<span class="value">
+                        								<span class="number">3.2</span>
+                        								<span class="unit">GHz</span>
+                        							</span>
+                        						</div>
+                                        	</div>
         <div class="span3 statbox red" style="width: 17%" onTablet="span6" onDesktop="span3">
 
             <div class="number"><?php echo $data['nbSujets']; ?> <i class="icon-folder-open-alt"></i></div>
@@ -26,6 +64,7 @@
                 <a href="{{URL::to('forums')}}"> Rapport complet</a>
             </div>
         </div>
+
         <div class="span3 statbox purple" style="width: 17%" onTablet="span6" onDesktop="span3">
 
             <div class="number"><?php echo $data['nbReponses']; ?> <i class="icon-ok"></i></div>
