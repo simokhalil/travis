@@ -31,6 +31,8 @@
         {{ HTML::style('css/ie9.css'); }}
 	<![endif]-->
 
+	@yield('styles')
+
 	<!-- start: Favicon -->
 	<link rel="shortcut icon" href="img/favicon.ico">
 	<!-- end: Favicon -->
