@@ -175,7 +175,7 @@ Info User
                     echo '<li><a href="#">';
                     echo '<i class="icon-arrow-up green"></i>';
 
-
+                    echo 'Le ';
                     echo '<strong>';
                     echo $data['MaxForumActivite'][$i];
                     echo '</strong>';

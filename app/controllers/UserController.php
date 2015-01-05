@@ -403,24 +403,77 @@ class UserController extends BaseController  {
         $MaxForumActivite=array();
 
         $forums = DB::table('transition')
-            ->select(DB::raw('attribut, count(*) as count'))
             ->where('Utilisateur', 'LIKE', $u)
             ->where('attribut','LIKE','IDForum=%')
-            ->groupBy('attribut')
-            ->orderBy('count','dsc')
             ->get();
+
+
+        //print_r($forums);
+        $forumtab = array();
+        $top= array();
+        $min= array();
+        $tabtemp = array();
+        //$top["top"]=0;
+        /*foreach($forums as $f){
+            $att = parse_attribut($f->Attribut);
+            $top[$att['IDForum']]=0;
+        }*/
+
+        foreach($forums as $f){
+            //$f['att']= array();
+            $att = parse_attribut($f->Attribut);
+            //$forumtab[]= $att['IDForum']?$att['IDForum']:"";
+            //echo $att['IDForum']." ";
+            if(!isset($tabtemp[$att['IDForum']])){
+                $tabtemp[$att['IDForum']]=0;
+            }
+
+            $tabtemp[$att['IDForum']]++;
+
+        }
+
+
+        for ($i=1; $i<6;$i++){
+            $top[$i]=array();
+            $top[$i][0]="";
+            $top[$i][1]=0;
+
+            $min[$i]=array();
+            $min[$i][0]="";
+            $min[$i][1]=-1;
+
+            foreach($tabtemp as $key => $value){
+                //echo $key.'->'.$value.' ';
+                if($value >$top[$i][1]){
+                    $top[$i][0]=$key;
+                    $top[$i][1]=$value;
+                }
+                if($min[$i][1]==-1 || ($value < $min[$i][1] && $value > -1)){
+                    $min[$i][0]=$key;
+                    $min[$i][1]=$value;
+                    //echo $min[$i][1];
+                }
+
+            }
+            $tabtemp[$top[$i][0]]=0;
+            $tabtemp[$min[$i][0]]=-1;
+        }
+
+
+        //print_r($top);
+
         $size=0;
         foreach($forums as $f)
         {
             $size++;
         }
-        $i=0;
-        while($i<5) {
+        $i=1;
+        while($i<6) {
 
-            $MinNbForumActivite[]=$forums[$size-$i-1]->count;
-            $MinForumActivite[]=$forums[$size-$i-1]->attribut;//a changer
-            $MaxNbForumActivite[]=$forums[$i]->count;
-            $MaxForumActivite[]= $forums[$i]->attribut;
+            $MinNbForumActivite[]=$min[$i][1];
+            $MinForumActivite[]=$min[$i][0];
+            $MaxNbForumActivite[]=$top[$i][1];
+            $MaxForumActivite[]= $top[$i][0];
 
             $i++;
 
