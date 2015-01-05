@@ -481,8 +481,10 @@ class ForumController extends BaseController {
             $historiqueTime[]=$h->Heure;
 
         }
-
-
+        $nbSujetsTotal = DB::table('transition')->where('titre','Poster un nouveau message')->count();
+        echo $nbSujetsForums;
+        die();
+        echo $nbSujetsTotal;
         return View::make('infoforum')->with('data',array(
             'nbVisites'=>$nbVisitesForum,
             'nbUtilisateurs' => $nbUsers,
@@ -511,6 +513,7 @@ class ForumController extends BaseController {
             'historiqueTitre'=>$historiqueTitre,
             'historiqueDate'=>$historiqueDate,
             'historiqueTime'=>$historiqueTime,
+            'nbSujetTotal'=>$nbSujetsTotal
         ));
     }
 

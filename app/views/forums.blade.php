@@ -80,7 +80,7 @@
                                     ?>
                                         <tr>
                                             <td>
-                                                <a href="<?php echo "/travis1/public/forum/".$forum?>"><?php echo $forum; ?></a>
+                                                <a href="<?php echo "forum/".$forum?>"><?php echo $forum; ?></a>
                                             </td>
                                             <td>
                                                 <?php echo $data['nbForumMsg'][$forum]; ?>
