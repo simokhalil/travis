@@ -15,7 +15,6 @@
     </ul>
 
     <div class="sparkLineStats span4 widget green" onTablet="span5" onDesktop="span4">
-
         <ul class="unstyled">
 
             <li>
