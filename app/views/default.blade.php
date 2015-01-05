@@ -38,7 +38,7 @@
 	<!-- end: Favicon -->
 
 	<!-- start: jQuery -->
-		<script src="/travis/public/js/jquery-1.9.1.min.js"></script>
+	{{HTML::script('js/jquery-1.9.1.min.js')}}
 	<!-- end: jQuery -->
 
 </head>
@@ -267,39 +267,39 @@
     </footer>
 
     <!-- start: JavaScript-->
-    <script src="/travis/public/js/jquery-migrate-1.0.0.min.js"></script>
-    <script src="/travis/public/js/jquery-ui-1.10.0.custom.min.js"></script>
-    <script src="/travis/public/js/jquery.ui.touch-punch.js"></script>
-    <script src="/travis/public/js/modernizr.js"></script>
-    <script src="/travis/public/js/bootstrap.min.js"></script>
-    <script src="/travis/public/js/jquery.cookie.js"></script>
-    <script src='/travis/public/js/fullcalendar.min.js'></script>
-    <script src='/travis/public/js/jquery.dataTables.min.js'></script>
-    <script src="/travis/public/js/excanvas.js"></script>
-    <script src="/travis/public/js/jquery.flot.js"></script>
-    <script src="/travis/public/js/jquery.flot.pie.js"></script>
-    <script src="/travis/public/js/jquery.flot.stack.js"></script>
-    <script src="/travis/public/js/jquery.flot.resize.min.js"></script>
-    <script src="/travis/public/js/jquery.chosen.min.js"></script>
-    <script src="/travis/public/js/jquery.uniform.min.js"></script>
-    <script src="/travis/public/js/jquery.cleditor.min.js"></script>
-    <script src="/travis/public/js/jquery.noty.js"></script>
-    <script src="/travis/public/js/jquery.elfinder.min.js"></script>
-    <script src="/travis/public/js/jquery.raty.min.js"></script>
-    <script src="/travis/public/js/jquery.iphone.toggle.js"></script>
-    <script src="/travis/public/js/jquery.uploadify-3.1.min.js"></script>
-    <script src="/travis/public/js/jquery.gritter.min.js"></script>
-    <script src="/travis/public/js/jquery.imagesloaded.js"></script>
-    <script src="/travis/public/js/jquery.masonry.min.js"></script>
-    <script src="/travis/public/js/jquery.knob.modified.js"></script>
-    <script src="/travis/public/js/jquery.sparkline.min.js"></script>
-    <script src="/travis/public/js/counter.js"></script>
-    <script src="/travis/public/js/retina.js"></script>
-    <script src="/travis/public/js/custom.js"></script>
+    {{HTML::script("js/jquery-migrate-1.0.0.min.js")}}
+    {{HTML::script("js/jquery-ui-1.10.0.custom.min.js")}}
+    {{HTML::script("js/jquery.ui.touch-punch.js")}}
+    {{HTML::script("js/modernizr.js")}}
+    {{HTML::script("js/bootstrap.min.js")}}
+    {{HTML::script("js/jquery.cookie.js")}}
+    {{HTML::script('js/fullcalendar.min.js')}}
+    {{HTML::script('js/jquery.dataTables.min.js')}}
+    {{HTML::script("js/excanvas.js")}}
+    {{HTML::script("js/jquery.flot.js")}}
+    {{HTML::script("js/jquery.flot.pie.js")}}
+    {{HTML::script("js/jquery.flot.stack.js")}}
+    {{HTML::script("js/jquery.flot.resize.min.js")}}
+    {{HTML::script("js/jquery.chosen.min.js")}}
+    {{HTML::script("js/jquery.uniform.min.js")}}
+    {{HTML::script("js/jquery.cleditor.min.js")}}
+    {{HTML::script("js/jquery.noty.js")}}
+    {{HTML::script("js/jquery.elfinder.min.js")}}
+    {{HTML::script("js/jquery.raty.min.js")}}
+    {{HTML::script("js/jquery.iphone.toggle.js")}}
+    {{HTML::script("js/jquery.uploadify-3.1.min.js")}}
+    {{HTML::script("js/jquery.gritter.min.js")}}
+    {{HTML::script("js/jquery.imagesloaded.js")}}
+    {{HTML::script("js/jquery.masonry.min.js")}}
+    {{HTML::script("js/jquery.knob.modified.js")}}
+    {{HTML::script("js/jquery.sparkline.min.js")}}
+    {{HTML::script("js/counter.js")}}
+    {{HTML::script("js/retina.js")}}
+    {{HTML::script("js/custom.js")}}
     <!-- end: JavaScript-->
 
-	<script src="/travis/public/js/highcharts/highcharts.js"></script>
-	<script src="/travis/public/js/highcharts/modules/exporting.js"></script>
+	{{HTML::script("js/highcharts/highcharts.js")}}
+	{{HTML::script("js/highcharts/modules/exporting.js")}}
 
 @yield('scripts')
 
