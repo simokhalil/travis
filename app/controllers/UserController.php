@@ -7,6 +7,7 @@
  */
 class UserController extends BaseController  {
 
+
     private $users = array();
     private $mostActiveUser = "Undefined";
     private $nbMostActiveUser = 0;
