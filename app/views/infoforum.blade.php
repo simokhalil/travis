@@ -16,25 +16,29 @@
             <i class="icon-angle-right"></i>
         </li>
     </ul>
-     <div class="circleStatsItemBox pink">
-           						<div class="header">Sujets</div>
-           						<span class="percent">%</span>
-                               	<div class="circleStat">
-                               		<div style="width:120px;display:inline;&quot;"><canvas width="120" height="120"></canvas><input type="text" value=<?php echo $data['nbSujets']/$data['nbSujetTotal']*100 ?> class="whiteCircle" readonly="readonly" style="width: 60px; position: absolute; margin-top: 42.8571428571429px; margin-left: -90px; font-size: 30px; border: none; font-family: Arial; font-weight: bold; text-align: center; color: rgba(255, 255, 255, 0.901961); padding: 0px; -webkit-appearance: none; background: none;"></div>
-           						</div>
-           						<div class="footer">
-           							<span class="">
-           								<span class="number">{{$data['nbSujets']}}</span>
-           								<span class="unit">Sujets</span>
 
-           							</span>
-           							<span class="sep"> / </span>
-           							<span class="value">
-           								<span class="number"><?php echo $data['nbSujetTotal']; ?></span>
-           								<span class="unit">Sujets</span>
-           							</span>
-           						</div>
-                           	</div>
+    <div class="row-fluid circleStats">
+        <div class="span2" onTablet="span2" onDesktop="span2">
+            <div class="circleStatsItemBox pink">
+                <div class="header">Sujets</div>
+                <span class="percent">%</span>
+                <div class="circleStat">
+                    <input type="text" value="<?php echo $data['nbSujets']/$data['nbSujetTotal']*100 ?>" class="whiteCircle" />
+                </div>
+                <div class="footer">
+                    <span class="">
+                        <span class="number">{{$data['nbSujets']}}</span>
+                        <span class="unit">Sujets</span>
+                    </span>
+                    <span class="sep"> / </span>
+                    <span class="value">
+                        <span class="number"><?php echo $data['nbSujetTotal']; ?></span>
+                        <span class="unit"></span>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div class="row-fluid">
 
