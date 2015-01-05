@@ -4,6 +4,9 @@
     Info Forum
 @endsection
 
+@section('styles')
+
+@endsection
 
 @section('content')
     <ul class="breadcrumb">
@@ -96,7 +99,11 @@
         </div>
     </div>
 
-
+    <div class="row-fluid">
+        <div id="timeline">
+            <!-- Timeline.js will genereate the markup here -->
+        </div>
+    </div>
 
     <div class="row-fluid">
         <div class="box black span6" ontablet="span6" ondesktop="span6">
@@ -343,6 +350,7 @@
 @endsection
 
 @section('scripts')
+
     <script>
         $(function () {
             $('#tauxActivite').highcharts({
