@@ -11,7 +11,11 @@
             <a href="{{URL::to('/')}}">Dashboard</a>
             <i class="icon-angle-right"></i>
         </li>
-        <li><a href="#">Forums</a></li>
+        <li>
+            <a href="#">Forums</a>
+            <i class="icon-angle-right"></i>
+        </li>
+        <li><a href="#">Récapitulatif</a></li>
     </ul>
 <div class="row-fluid hideInIE8 circleStats">
 

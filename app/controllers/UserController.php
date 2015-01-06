@@ -624,6 +624,85 @@ class UserController extends BaseController  {
 
 
 
+    public function listusers()
+    {
+        $usersTemp = DB::table('transition')
+            ->distinct()
+            ->get(['utilisateur']);
+        foreach($usersTemp as $u){
+            $users[]= $u->utilisateur;
+
+        }
+
+        foreach($users as $u){
+            $ActivitesUser["AfficherStructure"][$u] = DB::table('transition')
+                ->where('Utilisateur', 'LIKE', $u)
+                ->where('titre', 'Afficher une structure (cours/forum)')
+                ->count();
+
+            $ActivitesUser["RepondreMessage"][$u] = DB::table('transition')
+                ->where('Utilisateur', 'LIKE', $u)
+                ->where('titre', 'Répondre à un message')
+                ->count();
+
+            $ActivitesUser["AfficherFilDiscussion"][$u] = DB::table('transition')
+                ->where('Utilisateur', 'LIKE', $u)
+                ->where('titre', 'Afficher le fil de discussion')
+                ->count();
+
+            $ActivitesUser["PosterNouveauMessage"][$u] = DB::table('transition')
+                ->where('Utilisateur', 'LIKE', $u)
+                ->where('titre', 'Poster un nouveau message')
+                ->count();
+
+            $ActivitesUser["AfficherContenuMessage"][$u] = DB::table('transition')
+                ->where('Utilisateur', 'LIKE', $u)
+                ->where('titre', 'Afficher le contenu d\'un message')
+                ->count();
+
+            $ActivitesUser["BougerScrollbarEnBasEtAfficherFinMessage"][$u] = DB::table('transition')
+                ->where('Utilisateur', 'LIKE', $u)
+                ->where('titre', 'Bouger la scrollbar en bas - afficher la fin du message')
+                ->count();
+
+            $ActivitesUser["CiterMessage"][$u] = DB::table('transition')
+                ->where('Utilisateur', 'LIKE', $u)
+                ->where('titre', 'Citer un message')
+                ->count();
+
+            $ActivitesUser["BougerScrollbarBas"][$u] = DB::table('transition')
+                ->where('Utilisateur', 'LIKE', $u)
+                ->where('titre', 'Bouger la scrollbar en bas')
+                ->count();
+
+            $ActivitesUser["DownloaFichierMessage"][$u] = DB::table('transition')
+                ->where('Utilisateur', 'LIKE', $u)
+                ->where('titre', 'Download un fichier dans le message')
+                ->count();
+
+            $ActivitesUser["nbUserMsg"][$u] = DB::table('transition')
+                ->where('Utilisateur', 'LIKE', $u)
+                ->where(function($query){
+                    $query->where('titre', 'Poster un nouveau message')
+                        ->orWhere('titre', 'Répondre à un message');
+                })
+                ->count();
+            //echo $u.":".$ActivitesUser["RepondreMessage"][$u].",";
+        }
+        $this->nbMsg = DB::table('transition')
+            ->where(function($query){
+                $query->where('titre', 'Poster un nouveau message')
+                    ->orWhere('titre', 'Répondre à un message');
+            })
+            ->count();
+        return View::make('tabuser')->with('data',array(
+            'Users' => $users,
+
+            'ActivitesUser' => $ActivitesUser,
+            'nbMsg' => $this->nbMsg
+        ));
+
+    }
 
 
 }

@@ -11,7 +11,11 @@
             <a href="{{URL::to('/')}}">Dashboard</a>
             <i class="icon-angle-right"></i>
         </li>
-        <li><a href="#">Forums</a></li>
+        <li>
+            <a href="#">Forums</a>
+            <i class="icon-angle-right"></i>
+        </li>
+        <li><a href="#">Détails</a></li>
     </ul>
 
     <h1>Liste des foums et des messages</h1>

@@ -17,6 +17,7 @@ Route::get('/', 'HomeController@showDashboard');
 Route::get('forums', 'ForumController@showforums');
 Route::get('listforums', 'ForumController@showListForums');
 Route::get('users', 'UserController@showusers');
+Route::get('listusers', 'UserController@listusers');
 Route::get('forum/{id}', 'ForumController@getInfoByForum');
 Route::get('user/{id}', 'UserController@getInfoByUser');
 

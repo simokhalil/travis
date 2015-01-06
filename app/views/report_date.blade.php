@@ -5,6 +5,20 @@
 @endsection
 
 @section('content')
+    <ul class="breadcrumb">
+        <li>
+            <i class="icon-home"></i>
+            <a href="{{URL::to('/')}}">Dashboard</a>
+            <i class="icon-angle-right"></i>
+        </li>
+        <li>
+            <a href="#">Utilisateurs</a>
+            <i class="icon-angle-right"></i>
+        </li>
+        <li><a href="#">Historique</a></li>
+    </ul>
+
+    <h1>Hitorique des actions utilisateurs</h1>
 <div class="tree">
 
     <?php

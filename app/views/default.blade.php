@@ -233,7 +233,7 @@
                         <li><a href="#" class="dropmenu"><i class="icon-user"></i><span class="hidden-tablet"> Utilisateurs</span></a>
 							<ul>
 								<li><a class="submenu" href="{{URL::to('users')}}"><i class="icon-file-alt"></i><span class="hidden-tablet"> Récapitulatif</span></a></li>
-								<li><a class="submenu" href="#"><i class="icon-file-alt"></i><span class="hidden-tablet"> Liste des utilisateurs</span></a></li>
+								<li><a class="submenu" href="{{URL::to('listusers')}}"><i class="icon-file-alt"></i><span class="hidden-tablet"> Liste des utilisateurs</span></a></li>
 								<li><a class="submenu" href="{{URL::to('report/date')}}"><i class="icon-file-alt"></i><span class="hidden-tablet"> Historique</span></a></li>
 							</ul>
 						</li>
