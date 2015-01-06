@@ -172,6 +172,10 @@
                 </div>
             </div>
             <div class="box-content">
+                <div class="alert alert-info">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    <strong>INFO!</strong> Vous pouvez zoomer sur ce graphique en séléctionnat une plage verticale.
+                </div>
                 <div id="container" style="width: 100%; min-height: 500px; margin: 0 auto"></div>
             </div>
         </div>
