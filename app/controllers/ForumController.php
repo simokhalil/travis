@@ -3,6 +3,12 @@
 class ForumController extends BaseController {
 
     public $ActivitesForum;
+
+    public function showListForums(){
+
+    }
+
+
 	public function showforums()
 	{
         $attributs = DB::table('transition')->get(['attribut']);
