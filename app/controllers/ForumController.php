@@ -288,10 +288,14 @@ class ForumController extends BaseController {
 
        while($i<5) {
 
-                $ActiviteMin[]=$dates[$size-$i-1]->count;
-                $DateActiviteMin[]=$dates[$size-$i-1]->Date;
-                $ActiviteMax[]=$dates[$i]->count;
-                $DateActiviteMax[]= $dates[$i]->Date;
+           if(isset($dates[$size-$i-1])){
+               $ActiviteMin[]=$dates[$size-$i-1]->count;
+               $DateActiviteMin[]=$dates[$size-$i-1]->Date;
+           }
+           if(isset($dates[$i])) {
+               $ActiviteMax[] = $dates[$i]->count;
+               $DateActiviteMax[] = $dates[$i]->Date;
+           }
                     //DateTime::createFromFormat('Y-m-d',$date->Date);
                 $i++;
 
@@ -472,10 +476,14 @@ class ForumController extends BaseController {
         $i=0;
         while($i<5) {
 
-            $MinNbUserActivite[]=$users[$size-$i-1]->count;
-            $MinUserActivite[]=$users[$size-$i-1]->Utilisateur;
-            $MaxNbUserActivite[]=$users[$i]->count;
-            $MaxUserActivite[]= $users[$i]->Utilisateur;
+            if(isset($users[$size - $i - 1])) {
+                $MinNbUserActivite[] = $users[$size - $i - 1]->count;
+                $MinUserActivite[] = $users[$size - $i - 1]->Utilisateur;
+            }
+            if(isset($users[$i])) {
+                $MaxNbUserActivite[] = $users[$i]->count;
+                $MaxUserActivite[] = $users[$i]->Utilisateur;
+            }
 
             $i++;
 
@@ -546,12 +554,9 @@ class ForumController extends BaseController {
         $nbSujetsTotal = DB::table('transition')->where('titre','Poster un nouveau message')->count();
 
         $nbReponsesTotal = DB::table('transition')->where('titre','Poster un nouveau message')->count();
-        $nbusersTotal = DB::table('transition')
-            ->select(DB::raw('Utilisateur, count(*) as count'))
-
-            ->distinct()
-
-            ->count();
+        $nbusersTotal = DB::table('transition')->distinct()->get(['utilisateur']);
+        $nbusersTotal= count($nbusersTotal);
+        //echo $nbusersTotal;
         $nbUploadTotal = DB::table('transition')
             ->where('titre', 'Upload un ficher avec le message')
             ->count();

@@ -114,7 +114,7 @@ Users
     </div>
 </div>
 
-<div id="ActivitesUsers" style="min-width: 310px; height: 800px; margin-bottom: 25%"></div>
+<div id="ActivitesUsers" style="min-width: 310px; height: 800px;"></div>
 
 <div class="box-content">
     <table class="table table-striped table-bordered bootstrap-datatable datatable">

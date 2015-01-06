@@ -160,6 +160,17 @@ Route::get('report/forums', function(){
     ));
 });
 
+Route::get('report/date', function(){
+    $events = DB::table('transition')
+        ->select(DB::raw('Utilisateur, Titre, Attribut, Date, Heure'))
+        ->orderBy('Date')
+        ->get();
+    //print_r($events);
+    return View::make('report_date')->with('data',array(
+        'events' => $events
+    ));
+});
+
 Route::get('test2', function(){
     return View::make('test');
 });
