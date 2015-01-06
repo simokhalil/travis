@@ -51,9 +51,21 @@
 
     </div>
 
-    <h2>Activités</h2>
-    <!--<div id="piechart" style="height:300px"></div>-->
-    <div id="chart" style="width: 100%; min-height: 500px; margin: 0 auto"></div>
+    <div class="row-fluid">
+        <div class="box black span12" ontablet="span6" ondesktop="span12">
+            <div class="box-header">
+                <h2><i class="halflings-icon white list"></i><span class="break"></span>Activités</h2>
+
+                <div class="box-icon">
+                    <a href="#" class="btn-minimize"><i class="halflings-icon white chevron-up"></i></a>
+                    <a href="#" class="btn-close"><i class="halflings-icon white remove"></i></a>
+                </div>
+            </div>
+            <div class="box-content">
+                <div id="chart" style="width: 100%; min-height: 500px; margin: 0 auto"></div>
+            </div>
+        </div>
+    </div>
 @endsection
 
 
