@@ -46,8 +46,23 @@
             echo '<ul>';
         }
         echo '<li>';
-        echo '<span><i class="icon-time"></i>' . $e->Heure . ': '. $e->Titre.' </span>';
-        echo '<li>';
+        $attr=parse_attribut($e->Attribut);
+
+
+        if($e->Titre =="Connexion"){
+            echo '<span><i class="icon-time"></i>' . $e->Heure . ': <strong>'. $e->Titre.' </strong> de l\'utilisateur <strong>'.$attr['login'].'</strong></span>';
+        }
+        else{
+            //print_r($attr);
+            //echo "<br>";
+            if(isset($attr['IDForum'])){
+                echo '<span><i class="icon-time"></i>' . $e->Heure . ': <strong>'. $e->Titre.' </strong> sur le forum <strong>'.$attr['IDForum'].'</strong></span>';
+            }
+
+
+        }
+
+        echo '</li>';
 
 
         $currentYear = date_parse($e->Date)['year'];
