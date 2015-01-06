@@ -14,9 +14,12 @@
             <i class="icon-home"></i>
             <a href="#">Dashboard</a>
             <i class="icon-angle-right"></i>
+             <a href="#">Forums</a>
+             <i class="icon-angle-right"></i>
+            <a href="#">{{$data['idForum']}}</a>
         </li>
     </ul>
-
+<h2 style="align-items: center">Forum : {{$data['idForum']}}</h2>
 <div class="row-fluid hideInIE8 circleStats">
 
 				<div class="span2" onTablet="span4" onDesktop="span2">
@@ -441,7 +444,7 @@
                     plotShadow: false
                 },
                 title: {
-                    text: 'Répartition des activités utilisateurs'
+                    text: 'Rapport d\'activités'
                 },
                 tooltip: {
                     pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -480,7 +483,7 @@
                     plotShadow: false
                 },
                 title: {
-                    text: 'Répartition des activités utilisateurs'
+                    text: 'Répartition des activités sur le forum'
                 },
                 tooltip: {
                     pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'

@@ -42,7 +42,7 @@ class ForumController extends BaseController {
         $citations=0;
         foreach($forums as $forum){
             $nbForumMsg = DB::table('transition')
-                ->where('attribut', 'LIKE', 'IDForum='.$forum.'%')
+                ->where('attribut', 'LIKE',  'IDForum='.$forum.'%')
                 ->where(function($query){
                     $query->where('titre', 'Poster un nouveau message')
                         ->orWhere('titre', 'Répondre à un message');
@@ -411,27 +411,46 @@ class ForumController extends BaseController {
 
 
         }
-        $maxNbActiviteSujet[]=$max1;
-        $maxActiviteSujet[]=$maxs1;
-        $maxNbActiviteSujet[]=$max2;
-        $maxActiviteSujet[]=$maxs2;
-        $maxNbActiviteSujet[]=$max3;
-        $maxActiviteSujet[]=$maxs3;
-        $maxNbActiviteSujet[]=$max4;
-        $maxActiviteSujet[]=$maxs4;
-        $maxNbActiviteSujet[]=$max5;
-        $maxActiviteSujet[]=$maxs5;
-
-        $minNbActiviteSujet[]=$min1;
-        $minActiviteSujet[]=$mins1;
-        $minNbActiviteSujet[]=$min2;
-        $minActiviteSujet[]=$mins2;
-        $minNbActiviteSujet[]=$min3;
-        $minActiviteSujet[]=$mins3;
-        $minNbActiviteSujet[]=$min4;
-        $minActiviteSujet[]=$mins4;
-        $minNbActiviteSujet[]=$min5;
-        $minActiviteSujet[]=$mins5;
+        if(isset($maxs1))
+            $maxNbActiviteSujet[]=$max1;
+        if(isset($maxs1))
+            $maxActiviteSujet[]=$maxs1;
+        if(isset($maxs2))
+            $maxNbActiviteSujet[]=$max2;
+        if(isset($maxs2))
+            $maxActiviteSujet[]=$maxs2;
+        if(isset($maxs3))
+            $maxNbActiviteSujet[]=$max3;
+        if(isset($maxs3))
+            $maxActiviteSujet[]=$maxs3;
+        if(isset($maxs4))
+            $maxNbActiviteSujet[]=$max4;
+        if(isset($maxs4))
+            $maxActiviteSujet[]=$maxs4;
+        if(isset($maxs5))
+            $maxNbActiviteSujet[]=$max5;
+        if(isset($maxs5))
+            $maxActiviteSujet[]=$maxs5;
+        if(isset($mins1))
+            $minNbActiviteSujet[]=$min1;
+        if(isset($mins1))
+            $minActiviteSujet[]=$mins1;
+        if(isset($mins2))
+            $minNbActiviteSujet[]=$min2;
+        if(isset($mins2))
+            $minActiviteSujet[]=$mins2;
+        if(isset($mins3))
+            $minNbActiviteSujet[]=$min3;
+        if(isset($mins3))
+            $minActiviteSujet[]=$mins3;
+        if(isset($mins4))
+            $minNbActiviteSujet[]=$min4;
+        if(isset($mins4))
+            $minActiviteSujet[]=$mins4;
+        if(isset($mins5))
+            $minNbActiviteSujet[]=$min5;
+        if(isset($mins5))
+            $minActiviteSujet[]=$mins5;
 
         $MinNbUserActivite=array();
         $MinUserActivite=array();

@@ -1,4 +1,4 @@
-@extends('default')
+﻿@extends('default')
 
 @section('title')
     Dashboard
@@ -210,7 +210,7 @@
                                             </td>
                                             <td>
                                                 <?php echo round($pourcentage,2);?>%
-                                                <div class="meter blue"><span ><?php echo $pourcentage;?>%"></span></div>
+                                                <div class="meter blue"><span <?php echo 'style="width:'.$pourcentage.'%"';?>></span></div>
                                             </td>
                                             <td class="center">
                                            	<span class="<?php if($pourcentage>1){ echo "label label-success";} else {echo "label label-important";} ?>">

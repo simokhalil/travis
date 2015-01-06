@@ -58,7 +58,7 @@
 				<a class="brand" href="index.html"><span>TRAVIS</span></a>
 
 				<!-- start: Header Menu -->
-				<div class="nav-no-collapse header-nav">
+				<!--<div class="nav-no-collapse header-nav">
 					<ul class="nav pull-right">
 						<li class="dropdown hidden-phone">
 							<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
@@ -74,7 +74,7 @@
 
 							</ul>
 						</li>
-						<!-- start: Notifications Dropdown -->
+						<!-- start: Notifications Dropdown
 						<li class="dropdown hidden-phone">
 							<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
 								<i class="icon-calendar"></i>
@@ -92,8 +92,8 @@
 								</li>
 							</ul>
 						</li>
-						<!-- end: Notifications Dropdown -->
-						<!-- start: Message Dropdown -->
+						<!-- end: Notifications Dropdown
+						<!-- start: Message Dropdown
 						<li class="dropdown hidden-phone">
 							<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
 								<i class="icon-envelope"></i>
@@ -191,7 +191,7 @@
 							</ul>
 						</li>
 
-						<!-- start: User Dropdown -->
+						<!-- start: User Dropdown
 						<li class="dropdown">
 							<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
 								<i class="halflings-icon white user"></i> Dennis Ji
@@ -205,7 +205,7 @@
 								<li><a href="login.html"><i class="halflings-icon off"></i> Logout</a></li>
 							</ul>
 						</li>
-						<!-- end: User Dropdown -->
+						<!-- end: User Dropdown
 					</ul>
 				</div>
 				<!-- end: Header Menu -->

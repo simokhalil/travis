@@ -152,12 +152,12 @@ Users
                     <?php echo $data['ActivitesUser']['AfficherContenuMessage'][$u]; ?>
                 </td>
                 <td>
-                    <?php echo round($pourcentage,2);?>%
-                    <div class="meter blue"><span style="width: <?php echo $pourcentage;?>%"></span></div>
+                  <?php echo round($pourcentage,2);?>%
+                                                                  <div class="meter blue"><span <?php echo 'style="width:'.$pourcentage.'%"';?>></span></div>
                 </td>
                 <td class="center">
                                            	<span class="<?php if($pourcentage>1){ echo "label label-success";} else {echo "label label-important";} ?>">
-                                           	  <?php if($pourcentage>1){ echo "Actif";} else {echo "Inactif";}?></span>
+                                                                                      	  <?php if($pourcentage>1){ echo "Actif";} else {echo "Inactif";}?></span>
                 </td>
 
             </tr>
@@ -175,7 +175,8 @@ Users
         $(function () {
             $('#ActivitesUsers').highcharts({
                 chart: {
-                    type: 'column'
+                    type: 'column',
+                     zoomType:'x'
                 },
                 title: {
                     text: 'Activités pour chaque utilisateur'
@@ -190,10 +191,10 @@ Users
                 yAxis: {
                     min: 0,
                     title: {
-                        text: 'Total fruit consumption'
+                        text: 'Total activités'
                     },
                     stackLabels: {
-                        enabled: true,
+                        enabled: false,
                         style: {
                             fontWeight: 'bold',
                             color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
@@ -222,7 +223,7 @@ Users
                     column: {
                         stacking: 'normal',
                         dataLabels: {
-                            enabled: true,
+                            enabled: false,
                             color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white',
                             style: {
                                 textShadow: '0 0 3px black'
