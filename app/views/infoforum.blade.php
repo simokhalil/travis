@@ -126,20 +126,21 @@
 
 				<div class="span2" onTablet="span4" onDesktop="span2">
                 	<div class="circleStatsItemBox green">
-						<div class="header">Memory</div>
-						<span class="percent">percent</span>
+						<div class="header">Uploads</div>
+						<span class="percent">pourcent</span>
                     	<div class="circleStat">
-                    		<input type="text" value="100" class="whiteCircle" />
+                    		<input type="text" value="<?php echo $data['nbUploads'] * 100/$data['nbUploadTotal']?>" class="whiteCircle" />
 						</div>
 						<div class="footer">
 							<span class="count">
-								<span class="number">64</span>
-								<span class="unit">GB</span>
-							</span>
-							<span class="sep"> / </span>
-							<span class="value">
-								<span class="number">64</span>
-								<span class="unit">GB</span>
+                            								<span class="number">{{$data['nbUploads']}}</span>
+                            								<span class="unit">V</span>
+                            							</span>
+                            							<span class="sep"> / </span>
+                            							<span class="value">
+                            								<span class="number">{{$data['nbUploadTotal']}}</span>
+                            								<span class="unit">V</span>
+                            							</span>
 							</span>
 						</div>
                 	</div>
@@ -147,7 +148,7 @@
 
 			</div>
 
-   
+
 
     <div class="row-fluid">
         <div class="box black span6" ontablet="span6" ondesktop="span6">

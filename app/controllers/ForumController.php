@@ -533,6 +533,15 @@ class ForumController extends BaseController {
             ->distinct()
 
             ->count();
+        $nbUploadTotal = DB::table('transition')
+            ->where('titre', 'Upload un ficher avec le message')
+            ->count();
+        $nbUploads = DB::table('transition')
+            ->where('attribut', 'LIKE', 'IDForum='.$id.'%')
+            ->where('titre', 'Upload un ficher avec le message')
+            ->count();
+
+
         $nbVistes=DB::table('transition')->where('titre','Afficher une structure (cours/forum)')->count();
         $nbMsgTotal= $nbSujetsTotal+$nbReponsesTotal;
         //echo $nbSujetsForums;
@@ -570,7 +579,9 @@ class ForumController extends BaseController {
             'nbMsgTotal' => $nbMsgTotal,
             'nbReponseTotal' => $nbReponsesTotal,
             'nbUserTotal' =>$nbusersTotal,
-            'nbVisiteTotal' => $nbVistes
+            'nbVisiteTotal' => $nbVistes,
+            'nbUploadTotal' =>  $nbUploadTotal,
+            'nbUploads' => $nbUploads
 
         ));
     }

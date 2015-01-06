@@ -3,52 +3,42 @@
 @section('content')
 <div class="tree well">
     <ul>
-    @foreach($events as $event)
+    @foreach($data['forums'] as $forum)
         <li>
-            <span><i class="icon-folder-open"></i>Forum {{$event['forum']}}</span> <a href=""></a>
+            <span><i class="icon-folder-open"></i>Forum {{$forum}}</span> <a href=""></a>
             <ul>
+            <?php $i=0; ?>
+             @foreach($data['sujetsForum'] as $sujetForum)
+
+
+                 @if($sujetForum==$forum)
+
                 <li>
-                    <span><i class="icon-minus-sign"></i> Sujet </span> <a href="">Par user</a>
-                    <ul>
-                        <li>
-                            <span><i class="icon-leaf"></i> Grand Child</span> <a href="">Goes somewhere</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <span><i class="icon-minus-sign"></i> Child</span> <a href="">Goes somewhere</a>
-                    <ul>
-                        <li>
-                            <span><i class="icon-leaf"></i> Grand Child</span> <a href="">Goes somewhere</a>
-                        </li>
-                        <li>
-                            <span><i class="icon-minus-sign"></i> Grand Child</span> <a href="">Goes somewhere</a>
-                            <ul>
-                                <li>
-                                    <span><i class="icon-minus-sign"></i> Great Grand Child</span> <a href="">Goes somewhere</a>
-                                    <ul>
-                                        <li>
-                                            <span><i class="icon-leaf"></i> Great great Grand Child</span> <a href="">Goes somewhere</a>
-                                        </li>
-                                        <li>
-                                            <span><i class="icon-leaf"></i> Great great Grand Child</span> <a href="">Goes somewhere</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <span><i class="icon-leaf"></i> Great Grand Child</span> <a href="">Goes somewhere</a>
-                                </li>
-                                <li>
-                                    <span><i class="icon-leaf"></i> Great Grand Child</span> <a href="">Goes somewhere</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <span><i class="icon-leaf"></i> Grand Child</span> <a href="">Goes somewhere</a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
+
+                        <span><i class="icon-minus-sign"></i> Sujet  {{$data['sujetSujet'][$i]}}</span> <a href="">Par user : {{$data['sujetUser'][$i]}} le {{$data['sujetDate'][$i]}} à {{$data['sujetHeure'][$i]}} </a>
+                        <ul>
+                                                     <?php $j=0; ?>
+                                                                 @foreach($data['msgSujet'] as $msgSujet)
+
+
+                                                                     @if($msgSujet==$data['sujetSujet'][$i])
+
+                                                    <li>
+                                                        <span><i class="icon-leaf"></i> Message {{$data['msgMsg'][$j]}} </span> <a href="">{{$data['msgUser'][$j]}} a {{$data['msgTitre'][$j]}} le {{$data['msgDate'][$i]}} à {{$data['msgHeure'][$i]}} </a>
+                                                    </li>
+                                                    <?php $j++;?>
+                                                    @endif
+
+                                                                  @endforeach
+                                                </ul>
+                 </li>
+
+
+                <?php $i++;?>
+              @endif
+
+              @endforeach
+              </ul>
         </li>
     @endforeach
     </ul>
