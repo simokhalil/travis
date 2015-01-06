@@ -223,7 +223,12 @@
                     <ul class="nav nav-tabs nav-stacked main-menu">
 
                         <li><a href="{{URL::to('/')}}"><i class="icon-bar-chart"></i><span class="hidden-tablet"> Dashboard</span></a></li>
-                        <li><a href="{{URL::to('forums')}}"><i class="icon-folder-close-alt"></i><span class="hidden-tablet"> Forums</span></a></li>
+                        <li><a href="#" class="dropmenu"><i class="icon-folder-close-alt"></i><span class="hidden-tablet"> Forums</span></a>
+							<ul>
+								<li><a class="submenu" href="{{URL::to('forums')}}"><i class="icon-file-alt"></i><span class="hidden-tablet"> Récapitulatif</span></a></li>
+								<li><a class="submenu" href="{{URL::to('listforums')}}"><i class="icon-file-alt"></i><span class="hidden-tablet"> Liste des forums</span></a></li>
+							</ul>
+						</li>
                         <li><a href="{{URL::to('users')}}"><i class="icon-user"></i><span class="hidden-tablet"> Utilisateurs</span></a> </li>
                     </ul>
                 </div>
