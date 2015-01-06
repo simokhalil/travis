@@ -105,20 +105,20 @@
 
 				<div class="span2" onTablet="span4" onDesktop="span2">
                 	<div class="circleStatsItemBox blue">
-						<div class="header">Memory</div>
-						<span class="percent">percent</span>
+						<div class="header">Visites</div>
+						<span class="percent">pourcent</span>
                     	<div class="circleStat">
-                    		<input type="text" value="100" class="whiteCircle" />
+                    		<input type="text" value="<?php echo $data['nbVisites'] * 100/$data['nbVisiteTotal']?>" class="whiteCircle" />
 						</div>
 						<div class="footer">
 							<span class="count">
-								<span class="number">64</span>
-								<span class="unit">GB</span>
+								<span class="number">{{$data['nbVisites']}}</span>
+								<span class="unit">V</span>
 							</span>
 							<span class="sep"> / </span>
 							<span class="value">
-								<span class="number">64</span>
-								<span class="unit">GB</span>
+								<span class="number">{{$data['nbVisiteTotal']}}</span>
+								<span class="unit">V</span>
 							</span>
 						</div>
                 	</div>
@@ -147,58 +147,7 @@
 
 			</div>
 
-    <div class="row-fluid">
-        <div class="span3 statbox red" style="width: 17%" onTablet="span6" onDesktop="span3">
-
-            <div class="number"><?php echo $data['nbSujets']; ?> <i class="icon-folder-open-alt"></i></div>
-            <div class="title">Sujets</div>
-            <div class="footer">
-                <a href="{{URL::to('forums')}}"> Rapport complet</a>
-            </div>
-        </div>
-
-        <div class="span3 statbox purple" style="width: 17%" onTablet="span6" onDesktop="span3">
-
-            <div class="number"><?php echo $data['nbReponses']; ?> <i class="icon-ok"></i></div>
-            <div class="title">Reponses</div>
-            <div class="footer">
-                <a href="{{URL::to('forums')}}"> Rapport complet</a>
-            </div>
-        </div>
-        <div class="span3 statbox green" style="width: 17%" onTablet="span6" onDesktop="span3">
-
-            <div class="number"><?php echo $data['nbMsgs']; ?><i class="icon-file-alt"></i></div>
-            <div class="title">Messages</div>
-            <div class="footer">
-                <a href="#"> Rapport complet</a>
-            </div>
-        </div>
-        <div class="span3 statbox blue noMargin" style="width: 17%" onTablet="span6" onDesktop="span3">
-
-            <div class="number"><?php echo $data['nbUtilisateurs']; ?><i class=<?php if ($data['nbUtilisateurs'] > 10) {
-                    echo "icon-arrow-up";
-                } else {
-                    echo "icon-arrow-down";
-                }?>></i></div>
-            <div class="title">Utilisateurs</div>
-            <div class="footer">
-                <a href="#"> Rapport complet</a>
-            </div>
-        </div>
-        <div class="span3 statbox yellow" style="width: 17%" onTablet="span6" onDesktop="span3">
-
-
-            <div class="number"><?php echo $data['nbVisites']; ?><i class=<?php if ($data['nbVisites'] > 50) {
-                    echo "icon-arrow-up";
-                } else {
-                    echo "icon-arrow-down";
-                }?>></i></div>
-            <div class="title">visites</div>
-            <div class="footer">
-                <a href="#"> Rapport complet</a>
-            </div>
-        </div>
-    </div>
+   
 
     <div class="row-fluid">
         <div class="box black span6" ontablet="span6" ondesktop="span6">

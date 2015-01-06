@@ -38,7 +38,7 @@ Route::get('report/forums', function(){
         $events[$attrs['IDForum']]['forum'] = $attrs['IDForum'];
 
         if($transition->Titre == 'Poster un nouveau message'){
-            $events[$attrs['IDForum']]['sujets'][$attrs['IDMsg']]['sujet'] = $attrs['IDMsg'];
+            $events[$attrs['IDForum']][' '][$attrs['IDMsg']]['sujet'] = $attrs['IDMsg'];
             $events[$attrs['IDForum']]['sujets'][$attrs['IDMsg']] = array(
                 'sujet' => $attrs['IDMsg'],
                 'date' => $transition->Date,

@@ -533,7 +533,7 @@ class ForumController extends BaseController {
             ->distinct()
 
             ->count();
-
+        $nbVistes=DB::table('transition')->where('titre','Afficher une structure (cours/forum)')->count();
         $nbMsgTotal= $nbSujetsTotal+$nbReponsesTotal;
         //echo $nbSujetsForums;
 
@@ -569,7 +569,8 @@ class ForumController extends BaseController {
             'nbSujetTotal'=>$nbSujetsTotal,
             'nbMsgTotal' => $nbMsgTotal,
             'nbReponseTotal' => $nbReponsesTotal,
-            'nbUserTotal' =>$nbusersTotal
+            'nbUserTotal' =>$nbusersTotal,
+            'nbVisiteTotal' => $nbVistes
 
         ));
     }
