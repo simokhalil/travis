@@ -13,39 +13,154 @@
         </li>
         <li><a href="#">Forums</a></li>
     </ul>
+<div class="row-fluid hideInIE8 circleStats">
 
-    <div class="sparkLineStats span4 widget green" onTablet="span5" onDesktop="span4">
-        <ul class="unstyled">
-
-            <li>
-                <input type="text"  value="<?php echo $data['nbVisitesForum'][$data['maxVisites']] * 100/$data['nbVisites']?>" class="whiteCircle">
-                Le plus consulté:
-                <span class="number"><?php echo $data['maxVisites'] ?></span>
-            </li>
-                            <li><input type="text"  value="<?php
-                                                                 echo $data['nbForumMsg'][$data['maxMsgs']] * 100/$data['nbMsg']?>" class="whiteCircle" readonly="readonly" style="width: 60px; position: absolute; margin-top: 42.8571428571429px; margin-left: -90px; font-size: 30px; border: none; font-family: Arial; font-weight: bold; text-align: center; color: rgba(255, 255, 255, 0.901961); padding: 0px; -webkit-appearance: none; background: none;"></span>
-
-                                Contenant le plus de messages:
-                                <span class="number"><?php echo $data['maxMsgs'] ?></span>
-                            </li>
-                            <li><input type="text"  value="<?php
-                                                                 echo $data['nbSujetsForum'][$data['maxSujets']] * 100/$data['nbSujets']?>" class="whiteCircle" readonly="readonly" style="width: 60px; position: absolute; margin-top: 42.8571428571429px; margin-left: -90px; font-size: 30px; border: none; font-family: Arial; font-weight: bold; text-align: center; color: rgba(255, 255, 255, 0.901961); padding: 0px; -webkit-appearance: none; background: none;"></span>
-
-                                Contenant le plus de sujets:
-                                <span class="number"><?php echo $data['maxSujets'] ?></span>
-                            </li>
-                            <li><input type="text"  value="<?php
-                                                                 echo $data['nbReponsesForum'][$data['maxReponses']] * 100/$data['nbReponses']?>" class="whiteCircle" readonly="readonly" style="width: 60px; position: absolute; margin-top: 42.8571428571429px; margin-left: -90px; font-size: 30px; border: none; font-family: Arial; font-weight: bold; text-align: center; color: rgba(255, 255, 255, 0.901961); padding: 0px; -webkit-appearance: none; background: none;"></span>
-
-                                Contenant le plus de reponses <span class="number"><?php echo $data['maxReponses'] ?></span>
-                            </li>
+				<div class="span2" onTablet="span4" onDesktop="span2">
+                	<div class="circleStatsItemBox yellow">
+						<div class="header">Forum le plus consulté</div>
+						<span class="percent">pourcent</span>
+						<div class="circleStat">
+                    		<input type="text" value="<?php echo $data['nbVisitesForum'][$data['maxVisites']] * 100/$data['nbVisites']?>" class="whiteCircle" />
+						</div>
+						<div class="footer">
 
 
-                        </ul>
+							<span class="value">
+							    <span class="unit">Forum </span>
+								<span class="number">{{$data['maxVisites']}}</span>
 
-    					<div class="clearfix"></div>
+							</span>
+                            <span class="sep"> : </span>
+							<span >
+                            	<span class="number">{{$data['nbVisitesForum'][$data['maxVisites']]}}</span>
+                            	<span class="unit">visites</span>
+                            </span>
+						</div>
+                	</div>
+				</div>
 
-                    </div><!-- End .sparkStats -->
+				<div class="span2" onTablet="span4" onDesktop="span2">
+                	<div class="circleStatsItemBox green">
+						<div class="header">Max de messages</div>
+						<span class="percent">pourcent</span>
+						<div class="circleStat">
+                    		<input type="text" value="<?php echo $data['nbForumMsg'][$data['maxMsgs']] * 100/$data['nbMsg']?>" class="whiteCircle" />
+						</div>
+						<div class="footer">
+
+
+                        							<span class="value">
+                        							    <span class="unit">Forum </span>
+                        								<span class="number">{{$data['maxMsgs']}}</span>
+
+                        							</span>
+                                                    <span class="sep"> : </span>
+                        							<span >
+                                                    	<span class="number">{{$data['nbForumMsg'][$data['maxMsgs']]}}</span>
+                                                    	<span class="unit">msg</span>
+                                                    </span>
+                        						</div>
+                	</div>
+				</div>
+
+				<div class="span2" onTablet="span4" onDesktop="span2">
+                	<div class="circleStatsItemBox red">
+						<div class="header">Max de sujets</div>
+						<span class="percent">pourcent</span>
+                    	<div class="circleStat">
+                    		<input type="text" value="<?php echo $data['nbSujetsForum'][$data['maxSujets']] * 100/$data['nbSujets']?>" class="whiteCircle" />
+						</div>
+						<div class="footer">
+
+
+                        							<span class="value">
+                        							    <span class="unit">Forum </span>
+                        								<span class="number">{{$data['maxSujets']}}</span>
+
+                        							</span>
+                                                    <span class="sep"> : </span>
+                        							<span >
+                                                    	<span class="number">{{$data['nbSujetsForum'][$data['maxSujets']]}}</span>
+                                                    	<span class="unit">sujets</span>
+                                                    </span>
+                        						</div>
+                	</div>
+				</div>
+
+				<div class="span2 noMargin" onTablet="span4" onDesktop="span2">
+                	<div class="circleStatsItemBox pink">
+						<div class="header">Max de reponses</div>
+						<span class="percent">pourcent</span>
+                    	<div class="circleStat">
+                    		<input type="text" value="<?php echo $data['nbReponsesForum'][$data['maxReponses']] * 100/$data['nbReponses']?>" class="whiteCircle" />
+						</div>
+						<div class="footer">
+
+
+                        							<span class="value">
+                        							    <span class="unit">Forum </span>
+                        								<span class="number">{{$data['maxReponses']}}</span>
+
+                        							</span>
+                                                    <span class="sep"> : </span>
+                        							<span >
+                                                    	<span class="number">{{$data['nbReponsesForum'][$data['maxReponses']]}}</span>
+                                                    	<span class="unit">rep</span>
+                                                    </span>
+                        						</div>
+                	</div>
+				</div>
+
+				<div class="span2" onTablet="span4" onDesktop="span2">
+                	<div class="circleStatsItemBox blue">
+						<div class="header">Max d'upload</div>
+						<span class="percent">pourcent</span>
+                    	<div class="circleStat">
+                    		<input type="text" value="<?php echo $data['nbUploadsForum'][$data['maxUploads']] * 100/$data['nbUploads']?>" class="whiteCircle" />
+						</div>
+						<div class="footer">
+
+
+                        							<span class="value">
+                        							    <span class="unit">Forum </span>
+                        								<span class="number">{{$data['maxUploads']}}</span>
+
+                        							</span>
+                                                    <span class="sep"> : </span>
+                        							<span >
+                                                    	<span class="number">{{$data['nbUploadsForum'][$data['maxUploads']]}}</span>
+                                                    	<span class="unit">uploads</span>
+                                                    </span>
+                        						</div>
+                	</div>
+				</div>
+
+				<div class="span2" onTablet="span4" onDesktop="span2">
+                	<div class="circleStatsItemBox green">
+						<div class="header">Max Citations</div>
+						<span class="percent">percent</span>
+                    	<div class="circleStat">
+                    		<input type="text" value="<?php echo $data['nbCitationsForum'][$data['maxCitations']] * 100/$data['nbCitation']?>" class="whiteCircle" />
+						</div>
+					<div class="footer">
+
+
+                    							<span class="value">
+                    							    <span class="unit">Forum </span>
+                    								<span class="number">{{$data['maxCitations']}}</span>
+
+                    							</span>
+                                                <span class="sep"> : </span>
+                    							<span >
+                                                	<span class="number">{{$data['nbCitationsForum'][$data['maxVisites']]}}</span>
+                                                	<span class="unit">Cit</span>
+                                                </span>
+                    						</div>
+                	</div>
+				</div>
+
+			</div>
+
     <div id="container" style="width: 100%; min-height: 500px; margin: 0 auto"></div>
     <div id="ActivitesForum" style="min-width: 310px; height: 800px; margin: 0 auto"></div>
     <div class="row-fluid sortable">
@@ -314,5 +429,6 @@
                 }]
             });
         });
+
     </script>
 @endsection

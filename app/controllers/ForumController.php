@@ -21,6 +21,8 @@ class ForumController extends BaseController {
         $nbSujetsForums = array();
         $nbVisitesForum = array();
         $nbReponsesForum = array();
+        $nbUploadForum=array();
+        $nbCitationForum=array();
         $maxMsgs =0;
         $maxMsgForum=0;
         $maxSujets =0;
@@ -29,9 +31,15 @@ class ForumController extends BaseController {
         $maxVisitesForum=0;
         $maxReponses =0;
         $maxReponsesForum=0;
+        $maxUpload=0;
+        $maxUploadForum=0;
+        $maxCitation=0;
+        $maxCitationForum=0;
         $Visites=0;
         $Reponses=0;
         $Sujets=0;
+        $Uploads=0;
+        $citations=0;
         foreach($forums as $forum){
             $nbForumMsg = DB::table('transition')
                 ->where('attribut', 'LIKE', 'IDForum='.$forum.'%')
@@ -72,9 +80,38 @@ class ForumController extends BaseController {
                 $maxReponses=$nbReponsesForum[$forum];
                 $maxReponsesForum=$forum;
             }
+
+            $nbUploadForum[$forum] = DB::table('transition')
+                ->where('attribut', 'LIKE', 'IDForum='.$forum.'%')
+                ->where('titre', 'Upload un ficher avec le message')
+                ->count();
+
+            if($maxUpload<$nbUploadForum[$forum])
+            {
+
+                $maxUpload=$nbUploadForum[$forum];
+                $maxUploadForum=$forum;
+            }
+
+            $nbCitationForum[$forum] = DB::table('transition')
+                ->where('attribut', 'LIKE', 'IDForum='.$forum.'%')
+                ->where('titre', 'Citer un message')
+                ->count();
+
+            if($maxCitation<$nbCitationForum[$forum])
+            {
+
+                $maxCitation=$nbCitationForum[$forum];
+                $maxCitationForum=$forum;
+            }
+
+
             $Visites=$Visites+$nbVisitesForum[$forum];
             $Reponses=$Reponses+$nbReponsesForum[$forum];
             $Sujets=$Sujets+$nbSujetsForums[$forum];
+            $Uploads=$Uploads+$nbUploadForum[$forum];
+            $citations=$citations+$nbCitationForum[$forum];
+
         }
 
         $nbForums = count($forums);
@@ -178,16 +215,22 @@ class ForumController extends BaseController {
             'nbSujetsForum'=>$nbSujetsForums,
             'nbVisitesForum'=>$nbVisitesForum,
             'nbReponsesForum'=>$nbReponsesForum,
+            'nbUploadsForum' =>$nbUploadForum,
+            'nbCitationsForum' => $nbCitationForum,
             'nbUsers'=>$nbUsers,
             'dates' => $dates,
             'activites' => $activitesParDate,
             'maxMsgs' =>$maxMsgForum,
+            'maxUploads'=>$maxUploadForum,
+            'maxCitations' => $maxCitationForum,
             'maxSujets' =>$maxSujetsForum,
             'maxVisites' =>$maxVisitesForum,
             'maxReponses' =>$maxReponsesForum,
             'nbVisites' => $Visites,
             'nbReponses' => $Reponses,
             'nbSujets' => $Sujets,
+            'nbUploads' => $Uploads,
+            'nbCitation' => $citations,
             'ActivitesForum' => $ActivitesForum
         ));
 	}
