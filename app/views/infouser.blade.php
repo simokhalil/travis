@@ -1,7 +1,7 @@
 @extends('default')
 
 @section('title')
-Info User
+Informations utilisateur
 @endsection
 
 

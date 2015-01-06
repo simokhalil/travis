@@ -1,5 +1,9 @@
 @extends('default')
 
+@section('title')
+    Détails des forums
+@endsection
+
 @section('content')
     <ul class="breadcrumb">
         <li>
