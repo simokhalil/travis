@@ -8,13 +8,16 @@
     $currentDay="";
     $currentHour="";
     $currentYear="";
+    $currentTitre="";
     echo '<ul>';
     foreach($data['events'] as $e ){
 
         if((date_parse($e->Date)['month'] != $currentMonth || date_parse($e->Date)['year'] != $currentYear || date_parse($e->Date)['day'] != $currentDay || $currentHour != date_parse($e->Heure)['hour']) && $currentHour !="" ) {
+            //if($currentTitre != "Afficher une structure (cours/forum)"){
+                echo '</ul>';
+                echo '</li>';
+            //}
 
-            echo '</ul>';
-            echo '</li>';
         }
 
         if((date_parse($e->Date)['month'] != $currentMonth || date_parse($e->Date)['year'] != $currentYear || date_parse($e->Date)['day'] != $currentDay) && $currentDay!="" ) {
@@ -43,28 +46,32 @@
         if(date_parse($e->Date)['month'] != $currentMonth || date_parse($e->Date)['year'] != $currentYear || date_parse($e->Date)['day'] != $currentDay || $currentHour != date_parse($e->Heure)['hour'] ) {
             echo '<li>';
             echo '<span><i class="icon-time"></i>' . date_parse($e->Heure)['hour'] . 'h</span>';
-            echo '<ul>';
+            //if($e->Titre != "Afficher une structure (cours/forum)"){
+                echo '<ul>';
         }
-        echo '<li>';
-        $attr=parse_attribut($e->Attribut);
+        if($e->Titre != "Afficher une structure (cours/forum)" && $e->Titre != "Afficher le contenu d'un message" && $e->Titre != "Bouger la scrollbar en bas"){
+            echo '<li>';
+            $attr=parse_attribut($e->Attribut);
 
 
-        if($e->Titre =="Connexion"){
-            echo '<span><i class="icon-time"></i>' . $e->Heure . ': <strong>'. $e->Titre.' </strong> de l\'utilisateur <strong>'.$attr['login'].'</strong></span>';
-        }
-        else{
-            //print_r($attr);
-            //echo "<br>";
-            if(isset($attr['IDForum'])){
-                echo '<span><i class="icon-time"></i>' . $e->Heure . ': <strong>'. $e->Titre.' </strong> sur le forum <strong>'.$attr['IDForum'].'</strong></span>';
+            if($e->Titre =="Connexion"){
+                echo '<span><i class="icon-time"></i>' . $e->Heure . ': <strong>'. $e->Titre.' </strong> de l\'utilisateur <strong>'.$attr['login'].'</strong></span>';
+            }
+            else{
+                //print_r($attr);
+                //echo "<br>";
+                if(isset($attr['IDForum'])){
+                    echo '<span><i class="icon-time"></i>' . $e->Heure . ': L\'utilisateur <strong>'.$e->Utilisateur .' </strong> à effectué l\'action : <strong>'. $e->Titre.' </strong> sur le forum <strong>'.$attr['IDForum'].'</strong></span>';
+                }
+
+
             }
 
-
+            echo '</li>';
         }
 
-        echo '</li>';
 
-
+        $currentTitre = $e->Titre;
         $currentYear = date_parse($e->Date)['year'];
         $currentMonth = date_parse($e->Date)['month'];
         $currentDay = date_parse($e->Date)['day'];

@@ -165,6 +165,7 @@ Route::get('report/date', function(){
     $events = DB::table('transition')
         ->select(DB::raw('Utilisateur, Titre, Attribut, Date, Heure'))
         ->orderBy('Date')
+        ->orderBy('Heure')
         ->get();
     //print_r($events);
     return View::make('report_date')->with('data',array(
