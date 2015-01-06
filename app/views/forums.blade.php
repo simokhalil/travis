@@ -159,7 +159,7 @@
                 	</div>
 				</div>
 
-			</div>
+</div>
 
     <div id="container" style="width: 100%; min-height: 500px; margin: 0 auto"></div>
     <div id="ActivitesForum" style="min-width: 310px; height: 800px; margin: 0 auto"></div>

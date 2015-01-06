@@ -17,7 +17,135 @@
         </li>
     </ul>
 
+<div class="row-fluid hideInIE8 circleStats">
 
+				<div class="span2" onTablet="span4" onDesktop="span2">
+                	<div class="circleStatsItemBox yellow">
+						<div class="header">Sujets</div>
+						<span class="percent">pourcent</span>
+						<div class="circleStat">
+                    		<input type="text" value="<?php echo $data['nbSujets'] * 100/$data['nbSujetTotal']?>" class="whiteCircle" />
+						</div>
+						<div class="footer">
+							<span class="count">
+								<span class="number">{{$data['nbSujets']}}</span>
+								<span class="unit">MB</span>
+							</span>
+							<span class="sep"> / </span>
+							<span class="value">
+								<span class="number">{{$data['nbSujetTotal']}}</span>
+								<span class="unit">MB</span>
+							</span>
+						</div>
+                	</div>
+				</div>
+
+				<div class="span2" onTablet="span4" onDesktop="span2">
+                	<div class="circleStatsItemBox green">
+						<div class="header">Messages</div>
+						<span class="percent">pourcent</span>
+						<div class="circleStat">
+                    		<input type="text" value="<?php echo $data['nbMsgs'] * 100/$data['nbMsgTotal']?>" class="whiteCircle" />
+						</div>
+						<div class="footer">
+							<span class="count">
+								<span class="number">{{$data['nbMsgs']}}</span>
+								<span class="unit">Msgs</span>
+							</span>
+							<span class="sep"> / </span>
+							<span class="value">
+								<span class="number">{{$data['nbMsgTotal']}}</span>
+								<span class="unit">Msgs</span>
+							</span>
+						</div>
+                	</div>
+				</div>
+
+				<div class="span2" onTablet="span4" onDesktop="span2">
+                	<div class="circleStatsItemBox red">
+						<div class="header">Réponses</div>
+						<span class="percent">pourcent</span>
+                    	<div class="circleStat">
+                    		<input type="text" value="<?php echo $data['nbReponses'] * 100/$data['nbReponseTotal']?>" class="whiteCircle" />
+						</div>
+						<div class="footer">
+							<span class="count">
+								<span class="number">{{$data['nbReponses']}}</span>
+								<span class="unit">Rep</span>
+							</span>
+							<span class="sep"> / </span>
+							<span class="value">
+								<span class="number">{{$data['nbReponseTotal']}}</span>
+								<span class="unit">Rep</span>
+							</span>
+						</div>
+                	</div>
+				</div>
+
+				<div class="span2 noMargin" onTablet="span4" onDesktop="span2">
+                	<div class="circleStatsItemBox pink">
+						<div class="header">Utilisateurs</div>
+						<span class="percent">pourcent</span>
+                    	<div class="circleStat">
+                    		<input type="text" value="<?php echo $data['nbUtilisateurs'] * 100/$data['nbUserTotal']?>" class="whiteCircle" />
+						</div>
+						<div class="footer">
+							<span class="count">
+								<span class="number"> {{$data['nbUtilisateurs']}}</span>
+								<span class="unit">Users</span>
+							</span>
+							<span class="sep"> / </span>
+							<span class="value">
+								<span class="number">{{$data['nbUserTotal']}}</span>
+								<span class="unit">Users</span>
+							</span>
+						</div>
+                	</div>
+				</div>
+
+				<div class="span2" onTablet="span4" onDesktop="span2">
+                	<div class="circleStatsItemBox blue">
+						<div class="header">Memory</div>
+						<span class="percent">percent</span>
+                    	<div class="circleStat">
+                    		<input type="text" value="100" class="whiteCircle" />
+						</div>
+						<div class="footer">
+							<span class="count">
+								<span class="number">64</span>
+								<span class="unit">GB</span>
+							</span>
+							<span class="sep"> / </span>
+							<span class="value">
+								<span class="number">64</span>
+								<span class="unit">GB</span>
+							</span>
+						</div>
+                	</div>
+				</div>
+
+				<div class="span2" onTablet="span4" onDesktop="span2">
+                	<div class="circleStatsItemBox green">
+						<div class="header">Memory</div>
+						<span class="percent">percent</span>
+                    	<div class="circleStat">
+                    		<input type="text" value="100" class="whiteCircle" />
+						</div>
+						<div class="footer">
+							<span class="count">
+								<span class="number">64</span>
+								<span class="unit">GB</span>
+							</span>
+							<span class="sep"> / </span>
+							<span class="value">
+								<span class="number">64</span>
+								<span class="unit">GB</span>
+							</span>
+						</div>
+                	</div>
+				</div>
+
+			</div>
 
     <div class="row-fluid">
         <div class="span3 statbox red" style="width: 17%" onTablet="span6" onDesktop="span3">

@@ -525,6 +525,16 @@ class ForumController extends BaseController {
 
         }
         $nbSujetsTotal = DB::table('transition')->where('titre','Poster un nouveau message')->count();
+
+        $nbReponsesTotal = DB::table('transition')->where('titre','Poster un nouveau message')->count();
+        $nbusersTotal = DB::table('transition')
+            ->select(DB::raw('Utilisateur, count(*) as count'))
+
+            ->distinct()
+
+            ->count();
+
+        $nbMsgTotal= $nbSujetsTotal+$nbReponsesTotal;
         //echo $nbSujetsForums;
 
         //echo $nbSujetsTotal;
@@ -556,7 +566,11 @@ class ForumController extends BaseController {
             'historiqueTitre'=>$historiqueTitre,
             'historiqueDate'=>$historiqueDate,
             'historiqueTime'=>$historiqueTime,
-            'nbSujetTotal'=>$nbSujetsTotal
+            'nbSujetTotal'=>$nbSujetsTotal,
+            'nbMsgTotal' => $nbMsgTotal,
+            'nbReponseTotal' => $nbReponsesTotal,
+            'nbUserTotal' =>$nbusersTotal
+
         ));
     }
 
