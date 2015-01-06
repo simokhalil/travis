@@ -21,7 +21,7 @@
             <div class="number"><?php echo $data['nbForums']; ?> <i class="icon-folder-open-alt"></i></div>
             <div class="title">Forums</div>
             <div class="footer">
-                <a href="{{URL::to('forums')}}"> Rapport complet</a>
+                <a href="{{URL::to('report/forums')}}"> Rapport complet</a>
             </div>
         </div>
         <div class="span3 statbox green" onTablet="span6" onDesktop="span3">
