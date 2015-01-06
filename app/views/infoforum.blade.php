@@ -17,28 +17,7 @@
         </li>
     </ul>
 
-    <div class="row-fluid circleStats">
-        <div class="span2" onTablet="span2" onDesktop="span2">
-            <div class="circleStatsItemBox pink">
-                <div class="header">Sujets</div>
-                <span class="percent">%</span>
-                <div class="circleStat">
-                    <input type="text" value="<?php echo $data['nbSujets']/$data['nbSujetTotal']*100 ?>" class="whiteCircle" />
-                </div>
-                <div class="footer">
-                    <span class="">
-                        <span class="number">{{$data['nbSujets']}}</span>
-                        <span class="unit">Sujets</span>
-                    </span>
-                    <span class="sep"> / </span>
-                    <span class="value">
-                        <span class="number"><?php echo $data['nbSujetTotal']; ?></span>
-                        <span class="unit"></span>
-                    </span>
-                </div>
-            </div>
-        </div>
-    </div>
+
 
     <div class="row-fluid">
         <div class="span3 statbox red" style="width: 17%" onTablet="span6" onDesktop="span3">
@@ -454,5 +433,8 @@
                 }]
             });
         });
+
     </script>
+
+   {{HTML::script("js/jquery.circliful.min.js")}}
 @endsection

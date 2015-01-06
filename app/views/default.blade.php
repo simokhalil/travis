@@ -15,6 +15,7 @@
 	{{ HTML::style('css/bootstrap.min.css'); }}
 	{{ HTML::style('css/bootstrap-responsive.min.css'); }}
 	{{ HTML::style('css/style.css'); }}
+
 	{{ HTML::style('css/style-responsive.css'); }}
 
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&subset=latin,cyrillic-ext,latin-ext' rel='stylesheet' type='text/css'>
@@ -296,6 +297,8 @@
     {{HTML::script("js/counter.js")}}
     {{HTML::script("js/retina.js")}}
     {{HTML::script("js/custom.js")}}
+
+
     <!-- end: JavaScript-->
 
 	{{HTML::script("js/highcharts/highcharts.js")}}
