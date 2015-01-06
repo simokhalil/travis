@@ -11,40 +11,109 @@ Users
     </li>
     <li><a href="#">Utilisateurs</a></li>
 </ul>
-<div class="sparkLineStats span4 widget green" onTablet="span5" onDesktop="span4">
 
-    <ul class="unstyled">
-
-        <li><input type="text"  value="<?php
-            echo $data['nbMostActiveUser'] * 100/$data['maxActivities']?>" class="whiteCircle" readonly="readonly" style="width: 60px; position: absolute; margin-top: 42.8571428571429px; margin-left: -90px; font-size: 30px; border: none; font-family: Arial; font-weight: bold; text-align: center; color: rgba(255, 255, 255, 0.901961); padding: 0px; -webkit-appearance: none; background: none;">
-            Le plus actif:
-            <span class="number"><?php echo $data['mostActiveUser'] ?></span>
-        </li>
-        <li><input type="text"  value="<?php
-            echo $data['nbMostMessageUser'] * 100/$data['maxMessage']?>" class="whiteCircle" readonly="readonly" style="width: 60px; position: absolute; margin-top: 42.8571428571429px; margin-left: -90px; font-size: 30px; border: none; font-family: Arial; font-weight: bold; text-align: center; color: rgba(255, 255, 255, 0.901961); padding: 0px; -webkit-appearance: none; background: none;"></span>
-
-            Répondant au plus de messages:
-            <span class="number"><?php echo $data['mostMessageUser'] ?></span>
-        </li>
-        <li><input type="text"  value="<?php
-            echo $data['nbMostSujetUser'] * 100/$data['maxSujet']?>" class="whiteCircle" readonly="readonly" style="width: 60px; position: absolute; margin-top: 42.8571428571429px; margin-left: -90px; font-size: 30px; border: none; font-family: Arial; font-weight: bold; text-align: center; color: rgba(255, 255, 255, 0.901961); padding: 0px; -webkit-appearance: none; background: none;"></span>
-
-            Postant le plus de sujets:
-            <span class="number"><?php echo $data['mostSujetUser'] ?></span>
-        </li>
-        <li><input type="text"  value="<?php
-            echo $data['nbMostDelaiUser'] * 100/$data['maxDelai']?>" class="whiteCircle" readonly="readonly" style="width: 60px; position: absolute; margin-top: 42.8571428571429px; margin-left: -90px; font-size: 30px; border: none; font-family: Arial; font-weight: bold; text-align: center; color: rgba(255, 255, 255, 0.901961); padding: 0px; -webkit-appearance: none; background: none;"></span>
-
-            Passant le plus de temps sur le site: <span class="number"><?php echo $data['mostDelaiUser'] ?></span>
-        </li>
+<div class="row-fluid hideInIE8 circleStats">
+    <div class="span3" onTablet="span4" onDesktop="span3">
+        <div class="circleStatsItemBox yellow">
+            <div class="header">Le plus actif</div>
+            <span class="percent">{{$data['mostActiveUser']}}</span>
+            <div class="circleStat">
+                <input type="text" value="<?php echo $data['nbMostActiveUser'] * 100/$data['maxActivities']; ?>" class="whiteCircle" />
+            </div>
+            <div class="footer">
 
 
-    </ul>
+							<span class="value">
 
-    <div class="clearfix"></div>
+								<span class="number">{{$data['nbMostActiveUser']}}</span>
+                                <span class="unit">activités</span>
+							</span>
+                <span class="sep"> / </span>
+							<span >
+                            	<span class="number">{{$data['maxActivities']}}</span>
+                            	<span class="unit"></span>
+                            </span>
+            </div>
+        </div>
+    </div>
+
+    <div class="span3" onTablet="span4" onDesktop="span3">
+        <div class="circleStatsItemBox green">
+            <div class="header">Le plus répondant</div>
+            <span class="percent">{{$data['mostMessageUser']}}</span>
+            <div class="circleStat">
+                <input type="text" value="<?php echo $data['nbMostMessageUser'] * 100/$data['maxMessage']; ?>" class="whiteCircle" />
+            </div>
+            <div class="footer">
 
 
-</div><!-- End .sparkStats -->
+							<span class="value">
+
+								<span class="number">{{$data['nbMostMessageUser']}}</span>
+                                <span class="unit">réponses</span>
+							</span>
+                <span class="sep"> / </span>
+							<span >
+                            	<span class="number">{{$data['maxMessage']}}</span>
+                            	<span class="unit"></span>
+                            </span>
+            </div>
+        </div>
+    </div>
+
+    <div class="span3" onTablet="span4" onDesktop="span3">
+        <div class="circleStatsItemBox red">
+            <div class="header">Le plus posteur</div>
+            <span class="percent">{{$data['mostSujetUser']}}</span>
+            <div class="circleStat">
+                <input type="text" value="<?php echo $data['nbMostSujetUser'] * 100/$data['maxSujet']; ?>" class="whiteCircle" />
+            </div>
+            <div class="footer">
+
+
+							<span class="value">
+
+								<span class="number">{{$data['nbMostSujetUser']}}</span>
+                                <span class="unit">sujets</span>
+							</span>
+                <span class="sep"> / </span>
+							<span >
+                            	<span class="number">{{$data['maxSujet']}}</span>
+                            	<span class="unit"></span>
+                            </span>
+            </div>
+        </div>
+    </div>
+
+    <div class="span3" onTablet="span4" onDesktop="span3">
+        <div class="circleStatsItemBox blue">
+            <div class="header">Le plus campeur</div>
+            <span class="percent">{{$data['mostDelaiUser']}}</span>
+            <div class="circleStat">
+                <input type="text" value="<?php echo $data['nbMostDelaiUser'] * 100/$data['maxDelai']; ?>" class="whiteCircle" />
+            </div>
+            <div class="footer">
+
+
+							<span class="value">
+                                <?php
+                                    $hours = floor($data['nbMostDelaiUser'] / 3600);
+                                    $mins = floor(($data['nbMostDelaiUser'] - ($hours*3600)) / 60);
+                                    $secs = floor($data['nbMostDelaiUser'] % 60);
+                                ?>
+								<span class="number">{{$hours}}h{{$mins}}min{{$secs}}s</span>
+                                <span class="unit"></span>
+							</span>
+                <span class="sep"></span>
+							<span >
+                            	<span class="number"></span>
+                            	<span class="unit"></span>
+                            </span>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div id="ActivitesUsers" style="min-width: 310px; height: 800px; margin-bottom: 25%"></div>
 
 <div class="box-content">
