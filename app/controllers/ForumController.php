@@ -5,7 +5,53 @@ class ForumController extends BaseController {
     public $ActivitesForum;
 
     public function showListForums(){
+        $attributs = DB::table('transition')->get(['attribut']);
+        $nbMsgForums = array();
+        $nbSujetsForums = array();
+        $nbVisitesForum = array();
+        $nbReponsesForum = array();
+        $forums = array();
+        $msgs = array();
+        foreach ($attributs as $attribut) {
+            $attr = parse_attribut($attribut->attribut);
+            if (!empty($attr['IDForum'])) $forums[] = $attr['IDForum'];
+            if (!empty($attr['IDMsg'])) $msgs[] = $attr['IDMsg'];
+        }
+        $forums = array_unique($forums);
+        $msgs = array_unique($msgs);
+        $nbMsg = count($msgs);
+        foreach ($forums as $forum) {
+            $nbForumMsg[$forum] = DB::table('transition')
+                ->where('attribut', 'LIKE', 'IDForum=' . $forum . '%')
+                ->where(function ($query) {
+                    $query->where('titre', 'Poster un nouveau message')
+                        ->orWhere('titre', 'Répondre à un message');
+                })->count();
 
+            $nbSujetsForums[$forum] = DB::table('transition')
+                ->where('attribut', 'LIKE', 'IDForum=' . $forum . '%')
+                ->where('titre', 'Poster un nouveau message')
+                ->count();
+            $nbVisitesForum[$forum] = DB::table('transition')
+                ->where('attribut', 'LIKE', 'IDForum=' . $forum . '%')
+                ->where('titre', 'Afficher une structure (cours/forum)')
+                ->count();
+            $nbReponsesForum[$forum] = DB::table('transition')
+                ->where('attribut', 'LIKE', 'IDForum=' . $forum . '%')
+                ->where('titre', 'Répondre à un message')
+                ->count();
+        }
+
+        return View::make('tabforums')->with('data',array(
+
+            'nbMsg'=>$nbMsg,
+            'forums'=>$forums,
+            'nbForumMsg'=>$nbForumMsg,
+            'nbSujetsForum'=>$nbSujetsForums,
+            'nbVisitesForum'=>$nbVisitesForum,
+            'nbReponsesForum'=>$nbReponsesForum,
+
+        ));
     }
 
 

@@ -229,7 +229,7 @@
 								<li><a class="submenu" href="{{URL::to('listforums')}}"><i class="icon-file-alt"></i><span class="hidden-tablet"> Liste des forums</span></a></li>
 							</ul>
 						</li>
-                        <li><a href="#"><i class="icon-user"></i><span class="hidden-tablet"> Utilisateurs</span></a>
+                        <li><a href="#" class="dropmenu"><i class="icon-user"></i><span class="hidden-tablet"> Utilisateurs</span></a>
 							<ul>
 								<li><a class="submenu" href="{{URL::to('users')}}"><i class="icon-file-alt"></i><span class="hidden-tablet"> Récapitulatif</span></a></li>
 								<li><a class="submenu" href="#"><i class="icon-file-alt"></i><span class="hidden-tablet"> Liste des utilisateurs</span></a></li>
