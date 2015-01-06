@@ -6,17 +6,15 @@
     <?php
     $currentMonth="";
     $currentDay="";
-    $currentHour="";
+    $currentHour=-1;
     $currentYear="";
     $currentTitre="";
     echo '<ul>';
     foreach($data['events'] as $e ){
 
-        if((date_parse($e->Date)['month'] != $currentMonth || date_parse($e->Date)['year'] != $currentYear || date_parse($e->Date)['day'] != $currentDay || $currentHour != date_parse($e->Heure)['hour']) && $currentHour !="" ) {
-            //if($currentTitre != "Afficher une structure (cours/forum)"){
+        if((date_parse($e->Date)['month'] != $currentMonth || date_parse($e->Date)['year'] != $currentYear || date_parse($e->Date)['day'] != $currentDay || $currentHour != date_parse($e->Heure)['hour']) && $currentHour !=-1 ) {
                 echo '</ul>';
                 echo '</li>';
-            //}
 
         }
 
