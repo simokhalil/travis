@@ -67,36 +67,55 @@
     $currentMonth="";
     $currentDay="";
     $currentHour="";
-        foreach($data['events'] as $e ){
-            if(date_parse($e->Date)['month'] != $currentMonth && $currentMonth !="") {
-                $currentDay="";
+    $currentYear="";
+    echo '<ul>';
+    foreach($data['events'] as $e ){
 
-                echo '</li>';
-                echo '</ul>';
-            }
-
-            if(date_parse($e->Date)['month'] != $currentMonth) {
-                echo '<ul>';
-                echo '<li>';
-                echo '<span><i class="icon-calendar"></i> ' . date_parse($e->Date)['month'] . '/' . date_parse($e->Date)['year'] . '</span>';
-            }
-
-            if(date_parse($e->Date)['day'] != $currentDay && date_parse($e->Date)['month'] == $currentMonth && $currentDay != ""){
-                echo '</li>';
-                echo '</ul>';
-            }
-            if(date_parse($e->Date)['day'] != $currentDay && date_parse($e->Date)['month'] == $currentMonth){
-                echo '<ul>';
-                echo '<li>';
-                echo '<span class="badge badge-success"><i class="icon-minus-sign"></i> '.date_parse($e->Date)['day'].'/'.date_parse($e->Date)['month'].'/'.date_parse($e->Date)['year'].'</span>';
-
-
-            }
-            $currentDay=date_parse($e->Date)['day'];
-
-
-            $currentMonth=date_parse($e->Date)['month'];
+        if((date_parse($e->Date)['month'] != $currentMonth || date_parse($e->Date)['year'] != $currentYear || date_parse($e->Date)['day'] != $currentDay || $currentHour != date_parse($e->Heure)['hour']) && $currentHour !="" ) {
+            echo '</ul>';
+            echo '</li>';
         }
+
+        if((date_parse($e->Date)['month'] != $currentMonth || date_parse($e->Date)['year'] != $currentYear || date_parse($e->Date)['day'] != $currentDay) && $currentDay!="" ) {
+            echo '</ul>';
+            echo '</li>';
+        }
+        if((date_parse($e->Date)['month'] != $currentMonth || date_parse($e->Date)['year'] != $currentYear) && $currentMonth !="") {
+            echo '</ul>';
+            echo '</li>';
+
+        }
+
+        if(date_parse($e->Date)['month'] != $currentMonth || date_parse($e->Date)['year'] != $currentYear) {
+
+            echo '<li>';
+            echo '<span><i class="icon-calendar"></i> ' . date_parse($e->Date)['month'] . '/' . date_parse($e->Date)['year'] . '</span>';
+            echo '<ul>';
+        }
+
+        if(date_parse($e->Date)['month'] != $currentMonth || date_parse($e->Date)['year'] != $currentYear || date_parse($e->Date)['day'] != $currentDay ) {
+            echo '<li>';
+            echo '<span class="badge badge-success"><i class="icon-minus-sign"></i> ' . date_parse($e->Date)['day'] . '/' . date_parse($e->Date)['month'] . '/' . date_parse($e->Date)['year'] . '</span>';
+            echo '<ul>';
+        }
+
+        if(date_parse($e->Date)['month'] != $currentMonth || date_parse($e->Date)['year'] != $currentYear || date_parse($e->Date)['day'] != $currentDay || $currentHour != date_parse($e->Heure)['hour'] ) {
+            echo '<li>';
+            echo '<span><i class="icon-time"></i>' . date_parse($e->Heure)['hour'] . 'h</span>';
+            echo '<ul>';
+        }
+        echo '<li>';
+        echo '<span><i class="icon-time"></i>' . $e->Heure . ': '. $e->Titre.' </span>';
+        echo '<li>';
+
+
+        $currentYear = date_parse($e->Date)['year'];
+        $currentMonth = date_parse($e->Date)['month'];
+        $currentDay = date_parse($e->Date)['day'];
+        $currentHour = date_parse($e->Heure)['hour'];
+
+    }
+    echo '</ul>';
     ?>
 </div>
 @endsection
