@@ -1,7 +1,7 @@
 @extends('default')
 
 @section('title')
-    Info Forum
+    Informations forum
 @endsection
 
 @section('styles')

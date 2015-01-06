@@ -1,6 +1,6 @@
 @extends('default')
 @section('title')
-Users
+Utilisateurs
 @endsection
 @section('content')
 <ul class="breadcrumb">
