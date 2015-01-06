@@ -21,7 +21,7 @@
             <div class="number"><?php echo $data['nbForums']; ?> <i class="icon-folder-open-alt"></i></div>
             <div class="title">Forums</div>
             <div class="footer">
-                <a href="{{URL::to('report/forums')}}"> Rapport complet</a>
+                <a href="{{URL::to('report/forums')}}"> Voir les détails</a>
             </div>
         </div>
         <div class="span3 statbox green" onTablet="span6" onDesktop="span3">
@@ -29,7 +29,7 @@
             <div class="number"><?php echo $data['nbMsg']; ?> <i class="icon-file-alt"></i></div>
             <div class="title">Messages</div>
             <div class="footer">
-                <a href="#"> Rapport complet</a>
+                <a href="{{URL::to('report/date')}}"> Voir les détails</a>
             </div>
         </div>
         <div class="span3 statbox blue noMargin" onTablet="span6" onDesktop="span3">
@@ -37,15 +37,15 @@
             <div class="number"><?php echo $data['nbUsers']; ?><i class="icon-arrow-up"></i></div>
             <div class="title">Utilisateurs</div>
             <div class="footer">
-                <a href="#"> Rapport complet</a>
+                <a href="{{URL::to('users')}}"> Voir les détails</a>
             </div>
         </div>
         <div class="span3 statbox yellow" onTablet="span6" onDesktop="span3">
             <div class="boxchart">7,2,2,2,1,-4,-2,4,8,,0,3,3,5</div>
             <div class="number">678<i class="icon-arrow-down"></i></div>
-            <div class="title">visits</div>
+            <div class="title">visites</div>
             <div class="footer">
-                <a href="#"> Rapport complet</a>
+                <a href="#"> </a>
             </div>
         </div>
 
