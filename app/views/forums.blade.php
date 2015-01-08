@@ -17,153 +17,157 @@
         </li>
         <li><a href="#">Récapitulatif</a></li>
     </ul>
-<div class="row-fluid hideInIE8 circleStats">
+    <div class="row-fluid hideInIE8 circleStats">
 
-				<div class="span2" onTablet="span4" onDesktop="span2">
-                	<div class="circleStatsItemBox yellow">
-						<div class="header">Forum le plus consulté</div>
-						<span class="percent">pourcent</span>
-						<div class="circleStat">
-                    		<input type="text" value="<?php echo $data['nbVisitesForum'][$data['maxVisites']] * 100/$data['nbVisites']?>" class="whiteCircle" />
-						</div>
-						<div class="footer">
+        <div class="span2" onTablet="span4" onDesktop="span2">
+            <div class="circleStatsItemBox yellow">
+                <div class="header">Forum le plus consulté</div>
+                <span class="percent">pourcent</span>
 
+                <div class="circleStat">
+                    <input type="text"
+                           value="<?php echo $data['nbVisitesForum'][$data['maxVisites']] * 100 / $data['nbVisites']?>"
+                           class="whiteCircle"/>
+                </div>
+                <div class="footer">
+                    <span class="value">
+                        <span class="unit">Forum </span>
+                        <span class="number">{{$data['maxVisites']}}</span>
+                    </span>
+                    <span class="sep"> : </span>
+                    <span>
+                        <span class="number">{{$data['nbVisitesForum'][$data['maxVisites']]}}</span>
+                        <span class="unit">visites</span>
+                    </span>
+                </div>
+            </div>
+        </div>
 
-							<span class="value">
-							    <span class="unit">Forum </span>
-								<span class="number">{{$data['maxVisites']}}</span>
+        <div class="span2" onTablet="span4" onDesktop="span2">
+            <div class="circleStatsItemBox green">
+                <div class="header">Max de messages</div>
+                <span class="percent">pourcent</span>
 
-							</span>
-                            <span class="sep"> : </span>
-							<span >
-                            	<span class="number">{{$data['nbVisitesForum'][$data['maxVisites']]}}</span>
-                            	<span class="unit">visites</span>
-                            </span>
-						</div>
-                	</div>
-				</div>
+                <div class="circleStat">
+                    <input type="text" value="<?php echo $data['nbForumMsg'][$data['maxMsgs']] * 100 / $data['nbMsg']?>"
+                           class="whiteCircle"/>
+                </div>
+                <div class="footer">
+                    <span class="value">
+                        <span class="unit">Forum </span>
+                        <span class="number">{{$data['maxMsgs']}}</span>
 
-				<div class="span2" onTablet="span4" onDesktop="span2">
-                	<div class="circleStatsItemBox green">
-						<div class="header">Max de messages</div>
-						<span class="percent">pourcent</span>
-						<div class="circleStat">
-                    		<input type="text" value="<?php echo $data['nbForumMsg'][$data['maxMsgs']] * 100/$data['nbMsg']?>" class="whiteCircle" />
-						</div>
-						<div class="footer">
+                    </span>
+                    <span class="sep"> : </span>
+                    <span>
+                        <span class="number">{{$data['nbForumMsg'][$data['maxMsgs']]}}</span>
+                        <span class="unit">msg</span>
+                    </span>
+                </div>
+            </div>
+        </div>
 
+        <div class="span2" onTablet="span4" onDesktop="span2">
+            <div class="circleStatsItemBox red">
+                <div class="header">Max de sujets</div>
+                <span class="percent">pourcent</span>
 
-                        							<span class="value">
-                        							    <span class="unit">Forum </span>
-                        								<span class="number">{{$data['maxMsgs']}}</span>
+                <div class="circleStat">
+                    <input type="text"
+                           value="<?php echo $data['nbSujetsForum'][$data['maxSujets']] * 100 / $data['nbSujets']?>"
+                           class="whiteCircle"/>
+                </div>
+                <div class="footer">
+                    <span class="value">
+                        <span class="unit">Forum </span>
+                        <span class="number">{{$data['maxSujets']}}</span>
 
-                        							</span>
-                                                    <span class="sep"> : </span>
-                        							<span >
-                                                    	<span class="number">{{$data['nbForumMsg'][$data['maxMsgs']]}}</span>
-                                                    	<span class="unit">msg</span>
-                                                    </span>
-                        						</div>
-                	</div>
-				</div>
+                    </span>
+                    <span class="sep"> : </span>
+                    <span>
+                        <span class="number">{{$data['nbSujetsForum'][$data['maxSujets']]}}</span>
+                        <span class="unit">sujets</span>
+                    </span>
+                </div>
+            </div>
+        </div>
 
-				<div class="span2" onTablet="span4" onDesktop="span2">
-                	<div class="circleStatsItemBox red">
-						<div class="header">Max de sujets</div>
-						<span class="percent">pourcent</span>
-                    	<div class="circleStat">
-                    		<input type="text" value="<?php echo $data['nbSujetsForum'][$data['maxSujets']] * 100/$data['nbSujets']?>" class="whiteCircle" />
-						</div>
-						<div class="footer">
+        <div class="span2 noMargin" onTablet="span4" onDesktop="span2">
+            <div class="circleStatsItemBox pink">
+                <div class="header">Max de reponses</div>
+                <span class="percent">pourcent</span>
 
+                <div class="circleStat">
+                    <input type="text"
+                           value="<?php echo $data['nbReponsesForum'][$data['maxReponses']] * 100 / $data['nbReponses']?>"
+                           class="whiteCircle"/>
+                </div>
+                <div class="footer">
+                    <span class="value">
+                        <span class="unit">Forum </span>
+                        <span class="number">{{$data['maxReponses']}}</span>
+                    </span>
+                    <span class="sep"> : </span>
+                    <span>
+                        <span class="number">{{$data['nbReponsesForum'][$data['maxReponses']]}}</span>
+                        <span class="unit">rep</span>
+                    </span>
+                </div>
+            </div>
+        </div>
 
-                        							<span class="value">
-                        							    <span class="unit">Forum </span>
-                        								<span class="number">{{$data['maxSujets']}}</span>
+        <div class="span2" onTablet="span4" onDesktop="span2">
+            <div class="circleStatsItemBox blue">
+                <div class="header">Max d'upload</div>
+                <span class="percent">pourcent</span>
 
-                        							</span>
-                                                    <span class="sep"> : </span>
-                        							<span >
-                                                    	<span class="number">{{$data['nbSujetsForum'][$data['maxSujets']]}}</span>
-                                                    	<span class="unit">sujets</span>
-                                                    </span>
-                        						</div>
-                	</div>
-				</div>
-
-				<div class="span2 noMargin" onTablet="span4" onDesktop="span2">
-                	<div class="circleStatsItemBox pink">
-						<div class="header">Max de reponses</div>
-						<span class="percent">pourcent</span>
-                    	<div class="circleStat">
-                    		<input type="text" value="<?php echo $data['nbReponsesForum'][$data['maxReponses']] * 100/$data['nbReponses']?>" class="whiteCircle" />
-						</div>
-						<div class="footer">
-
-
-                        							<span class="value">
-                        							    <span class="unit">Forum </span>
-                        								<span class="number">{{$data['maxReponses']}}</span>
-
-                        							</span>
-                                                    <span class="sep"> : </span>
-                        							<span >
-                                                    	<span class="number">{{$data['nbReponsesForum'][$data['maxReponses']]}}</span>
-                                                    	<span class="unit">rep</span>
-                                                    </span>
-                        						</div>
-                	</div>
-				</div>
-
-				<div class="span2" onTablet="span4" onDesktop="span2">
-                	<div class="circleStatsItemBox blue">
-						<div class="header">Max d'upload</div>
-						<span class="percent">pourcent</span>
-                    	<div class="circleStat">
-                    		<input type="text" value="<?php echo $data['nbUploadsForum'][$data['maxUploads']] * 100/$data['nbUploads']?>" class="whiteCircle" />
-						</div>
-						<div class="footer">
-
-
-                        							<span class="value">
-                        							    <span class="unit">Forum </span>
-                        								<span class="number">{{$data['maxUploads']}}</span>
-
-                        							</span>
-                                                    <span class="sep"> : </span>
-                        							<span >
-                                                    	<span class="number">{{$data['nbUploadsForum'][$data['maxUploads']]}}</span>
-                                                    	<span class="unit">uploads</span>
-                                                    </span>
-                        						</div>
-                	</div>
-				</div>
-
-				<div class="span2" onTablet="span4" onDesktop="span2">
-                	<div class="circleStatsItemBox green">
-						<div class="header">Max Citations</div>
-						<span class="percent">percent</span>
-                    	<div class="circleStat">
-                    		<input type="text" value="<?php echo $data['nbCitationsForum'][$data['maxCitations']] * 100/$data['nbCitation']?>" class="whiteCircle" />
-						</div>
-					<div class="footer">
+                <div class="circleStat">
+                    <input type="text"
+                           value="<?php echo $data['nbUploadsForum'][$data['maxUploads']] * 100 / $data['nbUploads']?>"
+                           class="whiteCircle"/>
+                </div>
+                <div class="footer">
 
 
-                    							<span class="value">
-                    							    <span class="unit">Forum </span>
-                    								<span class="number">{{$data['maxCitations']}}</span>
+                    <span class="value">
+                        <span class="unit">Forum </span>
+                        <span class="number">{{$data['maxUploads']}}</span>
 
-                    							</span>
-                                                <span class="sep"> : </span>
-                    							<span >
-                                                	<span class="number">{{$data['nbCitationsForum'][$data['maxVisites']]}}</span>
-                                                	<span class="unit">Cit</span>
-                                                </span>
-                    						</div>
-                	</div>
-				</div>
+                    </span>
+                    <span class="sep"> : </span>
+                    <span>
+                        <span class="number">{{$data['nbUploadsForum'][$data['maxUploads']]}}</span>
+                        <span class="unit">uploads</span>
+                    </span>
+                </div>
+            </div>
+        </div>
 
-</div>
+        <div class="span2" onTablet="span4" onDesktop="span2">
+            <div class="circleStatsItemBox green">
+                <div class="header">Max Citations</div>
+                <span class="percent">percent</span>
+
+                <div class="circleStat">
+                    <input type="text"
+                           value="<?php echo $data['nbCitationsForum'][$data['maxCitations']] * 100 / $data['nbCitation']?>"
+                           class="whiteCircle"/>
+                </div>
+                <div class="footer">
+                    <span class="value">
+                        <span class="unit">Forum </span>
+                        <span class="number">{{$data['maxCitations']}}</span>
+                    </span>
+                    <span class="sep"> : </span>
+                    <span>
+                        <span class="number">{{$data['nbCitationsForum'][$data['maxVisites']]}}</span>
+                        <span class="unit">Cit</span>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+    </div>
 
     <div class="row-fluid">
         <div class="box black span12" ontablet="span6" ondesktop="span12">
@@ -198,14 +202,15 @@
             <div class="box-content">
                 <div class="alert alert-info">
                     <button type="button" class="close" data-dismiss="alert">×</button>
-                    <strong>INFO!</strong> Vous pouvez zoomer sur ce graphique en séléctionnat une plage verticale.<br />
-                    Vous pouvez également séléctionner les éléments à afficher/masquer en cliquent sur les labels dans la légende.
+                    <strong>INFO!</strong> Vous pouvez zoomer sur ce graphique en séléctionnat une plage verticale.<br/>
+                    Vous pouvez également séléctionner les éléments à afficher/masquer en cliquent sur les labels dans
+                    la légende.
                 </div>
                 <div id="ActivitesForum" style="min-width: 310px; height: 800px; margin: 0 auto"></div>
             </div>
         </div>
     </div>
-</div>
+    </div>
 
 
 @endsection
@@ -214,34 +219,34 @@
 @section('scripts')
     <script>
         /* ---------- Pie chart ---------- */
-       $(function () {
-        $('#container').highcharts({
-               chart: {
-                          zoomType: 'x'
-                      },
-               title: {
-                   text: 'Activités'
-               },
-               xAxis: {
-                   type: 'datetime'
-               },
-               series: [{
-                   type: 'area',
-                   title: 'Taux activité' ,
-                   data: [<?php
+        $(function () {
+            $('#container').highcharts({
+                chart: {
+                    zoomType: 'x'
+                },
+                title: {
+                    text: 'Activités'
+                },
+                xAxis: {
+                    type: 'datetime'
+                },
+                series: [{
+                    type: 'area',
+                    title: 'Taux activité',
+                    data: [<?php
                             foreach($data['activites'] as $activite){
                                echo '[Date.UTC('.$activite[0]->format('Y,m,d,H,i,s').'),'.$activite[1].'],';
                              }
-                          ?>  ]
-               }]
-           });
-          });
+                          ?>]
+                }]
+            });
+        });
 
         $(function () {
             $('#ActivitesForum').highcharts({
                 chart: {
                     type: 'column',
-                    zoomType:'x'
+                    zoomType: 'x'
                 },
                 title: {
                     text: 'Activités sur chaque forum'
@@ -283,8 +288,8 @@
                 tooltip: {
                     formatter: function () {
                         return '<b>' + this.x + '</b><br/>' +
-                            this.series.name + ': ' + this.y + '<br/>' +
-                            'Total: ' + this.point.stackTotal;
+                                this.series.name + ': ' + this.y + '<br/>' +
+                                'Total: ' + this.point.stackTotal;
                     }
                 },
                 plotOptions: {

@@ -34,11 +34,11 @@
             <?php
             //ig
             foreach($data['Users'] as $u){
-            $pourcentage = $data['ActivitesUser']['nbUserMsg'][$u] * 100/$data['nbMsg'];
+            $pourcentage = $data['ActivitesUser']['nbUserMsg'][$u] * 100 / $data['nbMsg'];
             ?>
             <tr>
                 <td>
-                    <a href="<?php echo "user/".$u?>"><?php echo $u; ?></a>
+                    <a href="<?php echo "user/" . $u?>"><?php echo $u; ?></a>
                 </td>
                 <td>
                     <?php echo $data['ActivitesUser']['nbUserMsg'][$u]; ?>
@@ -53,12 +53,21 @@
                     <?php echo $data['ActivitesUser']['AfficherContenuMessage'][$u]; ?>
                 </td>
                 <td>
-                    <?php echo round($pourcentage,2);?>%
-                    <div class="meter blue"><span <?php echo 'style="width:'.$pourcentage.'%"';?>></span></div>
+                    <?php echo round($pourcentage, 2);?>%
+                    <div class="meter blue"><span <?php echo 'style="width:' . $pourcentage . '%"';?>></span></div>
                 </td>
                 <td class="center">
-                                           	<span class="<?php if($pourcentage>1){ echo "label label-success";} else {echo "label label-important";} ?>">
-                                                                                      	  <?php if($pourcentage>1){ echo "Actif";} else {echo "Inactif";}?></span>
+                    <span class="<?php if ($pourcentage > 1) {
+                        echo "label label-success";
+                        } else {
+                            echo "label label-important";
+                        } ?>">
+                        <?php if ($pourcentage > 1) {
+                            echo "Actif";
+                        } else {
+                            echo "Inactif";
+                        }?>
+                    </span>
                 </td>
 
             </tr>

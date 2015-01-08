@@ -19,48 +19,52 @@
     </ul>
 
     <h1>Liste des foums et des messages</h1>
-<div class="tree well">
-    <ul>
-    @foreach($data['forums'] as $forum)
-        <li>
-            <span><i class="icon-folder-open"></i>Forum {{$forum}}</span> <a href=""></a>
-            <ul>
-            <?php $i=0; ?>
-             @foreach($data['sujetsForum'] as $sujetForum)
-
-
-                 @if($sujetForum==$forum)
-
+    <div class="tree well">
+        <ul>
+            @foreach($data['forums'] as $forum)
                 <li>
-
-                        <span><i class="icon-minus-sign"></i> Sujet  {{$data['sujetSujet'][$i]}}</span> <a href="">Par user : {{$data['sujetUser'][$i]}} le {{$data['sujetDate'][$i]}} à {{$data['sujetHeure'][$i]}} </a>
-                        <ul>
-                                                     <?php $j=0; ?>
-                                                                 @foreach($data['msgSujet'] as $msgSujet)
-
-
-                                                                     @if($msgSujet==$data['sujetSujet'][$i])
-
-                                                    <li>
-                                                        <span><i class="icon-leaf"></i> Message {{$data['msgMsg'][$j]}} </span> <a href="">{{$data['msgUser'][$j]}} a {{$data['msgTitre'][$j]}} le {{$data['msgDate'][$i]}} à {{$data['msgHeure'][$i]}} </a>
-                                                    </li>
-                                                    <?php $j++;?>
-                                                    @endif
-
-                                                                  @endforeach
-                                                </ul>
-                 </li>
+                    <span><i class="icon-folder-open"></i>Forum {{$forum}}</span> <a href=""></a>
+                    <ul>
+                        <?php $i = 0; ?>
+                        @foreach($data['sujetsForum'] as $sujetForum)
 
 
-                <?php $i++;?>
-              @endif
+                            @if($sujetForum==$forum)
 
-              @endforeach
-              </ul>
-        </li>
-    @endforeach
-    </ul>
-</div>
+                                <li>
+
+                                    <span><i class="icon-minus-sign"></i> Sujet  {{$data['sujetSujet'][$i]}}</span> <a
+                                            href="">Par user : {{$data['sujetUser'][$i]}} le {{$data['sujetDate'][$i]}}
+                                        à {{$data['sujetHeure'][$i]}} </a>
+                                    <ul>
+                                        <?php $j = 0; ?>
+                                        @foreach($data['msgSujet'] as $msgSujet)
+
+
+                                            @if($msgSujet==$data['sujetSujet'][$i])
+
+                                                <li>
+                                                    <span><i class="icon-leaf"></i> Message {{$data['msgMsg'][$j]}} </span>
+                                                    <a href="">{{$data['msgUser'][$j]}} a {{$data['msgTitre'][$j]}}
+                                                        le {{$data['msgDate'][$i]}} à {{$data['msgHeure'][$i]}} </a>
+                                                </li>
+                                                <?php $j++;?>
+                                            @endif
+
+                                        @endforeach
+                                    </ul>
+                                </li>
+
+
+                                <?php $i++;?>
+                            @endif
+
+                        @endforeach
+                    </ul>
+                </li>
+            @endforeach
+        </ul>
+    </div>
 
 @endsection
 

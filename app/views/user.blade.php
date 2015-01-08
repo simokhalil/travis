@@ -25,18 +25,15 @@ Utilisateurs
                 <input type="text" value="<?php echo $data['nbMostActiveUser'] * 100/$data['maxActivities']; ?>" class="whiteCircle" />
             </div>
             <div class="footer">
-
-
-							<span class="value">
-
-								<span class="number">{{$data['nbMostActiveUser']}}</span>
-                                <span class="unit">activités</span>
-							</span>
+                <span class="value">
+                    <span class="number">{{$data['nbMostActiveUser']}}</span>
+                    <span class="unit">activités</span>
+                </span>
                 <span class="sep"> / </span>
-							<span >
-                            	<span class="number">{{$data['maxActivities']}}</span>
-                            	<span class="unit"></span>
-                            </span>
+                <span >
+                    <span class="number">{{$data['maxActivities']}}</span>
+                    <span class="unit"></span>
+                </span>
             </div>
         </div>
     </div>
@@ -49,18 +46,15 @@ Utilisateurs
                 <input type="text" value="<?php echo $data['nbMostMessageUser'] * 100/$data['maxMessage']; ?>" class="whiteCircle" />
             </div>
             <div class="footer">
-
-
-							<span class="value">
-
-								<span class="number">{{$data['nbMostMessageUser']}}</span>
-                                <span class="unit">réponses</span>
-							</span>
+                <span class="value">
+                    <span class="number">{{$data['nbMostMessageUser']}}</span>
+                    <span class="unit">réponses</span>
+                </span>
                 <span class="sep"> / </span>
-							<span >
-                            	<span class="number">{{$data['maxMessage']}}</span>
-                            	<span class="unit"></span>
-                            </span>
+                <span >
+                    <span class="number">{{$data['maxMessage']}}</span>
+                    <span class="unit"></span>
+                </span>
             </div>
         </div>
     </div>
@@ -73,18 +67,15 @@ Utilisateurs
                 <input type="text" value="<?php echo $data['nbMostSujetUser'] * 100/$data['maxSujet']; ?>" class="whiteCircle" />
             </div>
             <div class="footer">
-
-
-							<span class="value">
-
-								<span class="number">{{$data['nbMostSujetUser']}}</span>
-                                <span class="unit">sujets</span>
-							</span>
+                <span class="value">
+                    <span class="number">{{$data['nbMostSujetUser']}}</span>
+                    <span class="unit">sujets</span>
+                </span>
                 <span class="sep"> / </span>
-							<span >
-                            	<span class="number">{{$data['maxSujet']}}</span>
-                            	<span class="unit"></span>
-                            </span>
+                <span >
+                    <span class="number">{{$data['maxSujet']}}</span>
+                    <span class="unit"></span>
+                </span>
             </div>
         </div>
     </div>
@@ -97,22 +88,20 @@ Utilisateurs
                 <input type="text" value="<?php echo $data['nbMostDelaiUser'] * 100/$data['maxDelai']; ?>" class="whiteCircle" />
             </div>
             <div class="footer">
-
-
-							<span class="value">
-                                <?php
-                                    $hours = floor($data['nbMostDelaiUser'] / 3600);
-                                    $mins = floor(($data['nbMostDelaiUser'] - ($hours*3600)) / 60);
-                                    $secs = floor($data['nbMostDelaiUser'] % 60);
-                                ?>
-								<span class="number">{{$hours}}h{{$mins}}min{{$secs}}s</span>
-                                <span class="unit"></span>
-							</span>
+                <span class="value">
+                    <?php
+                        $hours = floor($data['nbMostDelaiUser'] / 3600);
+                        $mins = floor(($data['nbMostDelaiUser'] - ($hours*3600)) / 60);
+                        $secs = floor($data['nbMostDelaiUser'] % 60);
+                    ?>
+                    <span class="number">{{$hours}}h{{$mins}}min{{$secs}}s</span>
+                    <span class="unit"></span>
+                </span>
                 <span class="sep"></span>
-							<span >
-                            	<span class="number"></span>
-                            	<span class="unit"></span>
-                            </span>
+                <span >
+                    <span class="number"></span>
+                    <span class="unit"></span>
+                </span>
             </div>
         </div>
     </div>
