@@ -55,7 +55,7 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</a>
-				<a class="brand" href="index.html"><span>TRAVIS</span></a>
+				<a class="brand" href="{{URL::to('/')}}"><span>TRAVIS</span></a>
 
 				<!-- start: Header Menu -->
 				<!--<div class="nav-no-collapse header-nav">
