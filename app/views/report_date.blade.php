@@ -12,7 +12,7 @@
             <i class="icon-angle-right"></i>
         </li>
         <li>
-            <a href="#">Utilisateurs</a>
+            <a href="#">Utilisateurs </a>
             <i class="icon-angle-right"></i>
         </li>
         <li><a href="#">Historique</a></li>
